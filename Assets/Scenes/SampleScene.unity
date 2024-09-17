@@ -545,8 +545,9 @@ GameObject:
   - component: {fileID: 1782543549}
   - component: {fileID: 1782543548}
   - component: {fileID: 1782543552}
-  - component: {fileID: 1782543554}
   - component: {fileID: 1782543553}
+  - component: {fileID: 1782543554}
+  - component: {fileID: 1782543555}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -713,6 +714,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+--- !u!114 &1782543555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782543547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a44d4073c072e4bbaafa718b2f399d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 330585543}
+  offset: {x: 0, y: 1, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

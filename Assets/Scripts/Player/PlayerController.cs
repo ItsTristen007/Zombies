@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 
     Inputs playerInputs;
     InputAction move;
+    InputAction look;
+    InputAction shoot;
 
     private void Awake()
     {
@@ -22,11 +24,20 @@ public class PlayerController : MonoBehaviour
     {
         move = playerInputs.Player.Move;
         move.Enable();
+
+        shoot = playerInputs.Player.Fire;
+        shoot.Enable();
+        shoot.performed += Shoot;
+
+        look = playerInputs.Player.Look;
+        look.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
+        shoot.Disable();
+        look.Disable();
     }
 
     void Update()
@@ -36,6 +47,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector3(moveDirection.x, 0, moveDirection.y) * moveSpeed;
+        rb.velocity = new Vector3(moveDirection.x * moveSpeed, rb.velocity.y, moveDirection.y * moveSpeed);
+    }
+
+    private void Shoot(InputAction.CallbackContext context)
+    {
+        Debug.Log("Shoot");
     }
 }
