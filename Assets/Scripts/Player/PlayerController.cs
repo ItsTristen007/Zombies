@@ -6,23 +6,36 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
+    CharacterController controller;
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float bulletSpeed = 15f;
+    [SerializeField] float maxAmmo = 10;
+    float currentAmmo;
+    float gravityValue = -9.81f;
 
     Vector2 moveDirection = Vector2.zero;
     Transform cameraTransform;
-    Vector3 playerVelocity; 
+    Vector3 playerVelocity = Vector3.zero;
+    bool isGrounded;
+
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform bulletSpawn;
 
     Inputs playerInputs;
     InputAction move;
     InputAction look;
     InputAction shoot;
+    InputAction reload;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        cameraTransform = Camera.main.transform;
+        controller = GetComponent<CharacterController>();
+        cameraTransform = Camera.main.transform;        
         playerInputs = new Inputs();
         Cursor.lockState = CursorLockMode.Locked;
+
+        currentAmmo = maxAmmo;
     }
 
     private void OnEnable()
@@ -36,6 +49,10 @@ public class PlayerController : MonoBehaviour
         shoot = playerInputs.Player.Fire;
         shoot.Enable();
         shoot.performed += Shoot;
+
+        reload = playerInputs.Player.Reload;
+        reload.Enable();
+        reload.performed += Reload;
     }
 
     private void OnDisable()
@@ -43,23 +60,39 @@ public class PlayerController : MonoBehaviour
         move.Disable();
         look.Disable();
         shoot.Disable();
+        reload.Disable();
     }
 
     void Update()
     {
-        moveDirection = move.ReadValue<Vector2>();
-    }
+        isGrounded = controller.isGrounded;
+        if (isGrounded && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
 
-    void FixedUpdate()
-    {
+        moveDirection = move.ReadValue<Vector2>();
         Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y);
         movement = cameraTransform.forward * movement.z + cameraTransform.right * movement.x;
         movement.y = 0f;
-        rb.velocity = movement * moveSpeed;
+        controller.Move(movement * moveSpeed * Time.deltaTime);
+
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 
     private void Shoot(InputAction.CallbackContext context)
     {
-        Debug.Log("Shoot");
+        if (currentAmmo > 0)
+        {
+            Rigidbody bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();
+            bullet.velocity = cameraTransform.forward * bulletSpeed;
+            currentAmmo--;
+        }
+    }
+
+    private void Reload(InputAction.CallbackContext context)
+    {
+        currentAmmo = maxAmmo;
     }
 }
