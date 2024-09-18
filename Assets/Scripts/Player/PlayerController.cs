@@ -7,10 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
     CharacterController controller;
+    PlayerWeapon weapon;
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float bulletSpeed = 15f;
-    [SerializeField] float maxAmmo = 10;
-    float currentAmmo;
     float gravityValue = -9.81f;
 
     Vector2 moveDirection = Vector2.zero;
@@ -31,11 +29,10 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
+        weapon = GetComponent<PlayerWeapon>();
         cameraTransform = Camera.main.transform;        
         playerInputs = new Inputs();
         Cursor.lockState = CursorLockMode.Locked;
-
-        currentAmmo = maxAmmo;
     }
 
     private void OnEnable()
@@ -83,16 +80,16 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext context)
     {
-        if (currentAmmo > 0)
+        if (weapon.GetCurrentAmmo() > 0)
         {
             Rigidbody bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();
-            bullet.velocity = cameraTransform.forward * bulletSpeed;
-            currentAmmo--;
+            bullet.velocity = cameraTransform.forward * weapon.GetBulletSpeed();
+            weapon.SetCurrentAmmo(weapon.GetCurrentAmmo() - 1);
         }
     }
 
     private void Reload(InputAction.CallbackContext context)
     {
-        currentAmmo = maxAmmo;
+        weapon.SetCurrentAmmo(weapon.GetMaxAmmo());
     }
 }
