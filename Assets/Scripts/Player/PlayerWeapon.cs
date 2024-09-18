@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    float maxAmmo = 10f;
+    [SerializeField] float maxAmmo = 10f;
     float currentAmmo;
-    float bulletSpeed = 40f;
+    [SerializeField] float bulletSpeed = 40f;
+    [SerializeField] float bulletDamage = 1f;
 
     public float GetMaxAmmo()
     {
@@ -26,6 +27,11 @@ public class PlayerWeapon : MonoBehaviour
     public float GetBulletSpeed()
     {
         return bulletSpeed;
+    }
+
+    public float GetBulletDamage()
+    {
+        return bulletDamage;
     }
 
     void Awake()
