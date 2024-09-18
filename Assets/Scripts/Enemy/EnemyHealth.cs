@@ -7,6 +7,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] float maxHealth = 5f;
     float currentHealth;
+    [SerializeField] float damage = 25f;
+
+    public float GetDamage()
+    {
+        return damage;
+    }
 
     void Awake()
     {
