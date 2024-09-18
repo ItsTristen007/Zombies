@@ -1669,7 +1669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0a2255c9bac8b4ea45b9f1e519a99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 7578093814868514403, guid: 0aad1220f89612e4c983956a710fa930, type: 3}
   maxHealth: 100
+  timeBeforeRegen: 2.5
+  invulnerableTime: 0.75
 --- !u!1 &2007735592
 GameObject:
   m_ObjectHideFlags: 0
