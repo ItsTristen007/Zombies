@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     InputAction shoot;
     InputAction reload;
 
+    public AudioClip shootSound;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -88,7 +89,11 @@ public class PlayerController : MonoBehaviour
             bullet.velocity = cameraTransform.forward * weapon.GetBulletSpeed();
             weapon.SetCurrentAmmo(weapon.GetCurrentAmmo() - 1);
 
+
             StartCoroutine(ShotDelay());
+
+            AudioSource.PlayClipAtPoint(shootSound, new Vector3(GetComponent<Rigidbody>().position.x, GetComponent<Rigidbody>().position.y, GetComponent<Rigidbody>().position.z), 1f);
+
         }
     }
 
