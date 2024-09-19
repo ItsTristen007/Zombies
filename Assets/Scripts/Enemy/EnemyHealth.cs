@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float maxHealth = 5f;
     float currentHealth;
     [SerializeField] float damage = 25f;
+    [SerializeField] float points = 10f;
 
     public float GetDamage()
     {
@@ -31,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        player.GetComponent<PlayerScore>().ChangeScore(points);
     }
 
     void OnTriggerEnter(Collider other)
