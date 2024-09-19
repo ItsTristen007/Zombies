@@ -61,6 +61,7 @@ public class Spawner : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenWaves);
         numSpawned = 0;
         gameManager.GetComponent<GameManager>().UpdateWave();
+        waveSpawnNumber++;
         isWaiting = false;
     }
 }

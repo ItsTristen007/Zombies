@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     Transform cameraTransform;
     Vector3 playerVelocity = Vector3.zero;
     bool isGrounded;
+    float delayTime = 0.5f;
+    bool isWaiting;
 
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawn;
@@ -80,16 +82,28 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext context)
     {
-        if (weapon.GetCurrentAmmo() > 0)
+        if (weapon.GetCurrentAmmo() > 0 && !isWaiting && !GameManager.gamePaused)
         {
             Rigidbody bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();
             bullet.velocity = cameraTransform.forward * weapon.GetBulletSpeed();
             weapon.SetCurrentAmmo(weapon.GetCurrentAmmo() - 1);
+
+            StartCoroutine(ShotDelay());
         }
     }
 
     private void Reload(InputAction.CallbackContext context)
     {
-        weapon.SetCurrentAmmo(weapon.GetMaxAmmo());
+        if (!isWaiting && !GameManager.gamePaused)
+        {
+            weapon.SetCurrentAmmo(weapon.GetMaxAmmo());
+        }
+    }
+
+    IEnumerator ShotDelay()
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(delayTime);
+        isWaiting = false;
     }
 }

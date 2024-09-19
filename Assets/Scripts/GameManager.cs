@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool gamePaused;
     [SerializeField] GameObject player;
     PlayerHealth healthInfo;
     PlayerWeapon weaponInfo;
@@ -17,8 +18,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI waveCounter;
     int currentWave;
 
+    [SerializeField] GameObject gameOverScreen;
+    [SerializeField] TextMeshProUGUI statsText;
+
     void Awake()
     {
+        gamePaused = false;
+        Time.timeScale = 1.0f;
+
         healthInfo = player.GetComponent<PlayerHealth>();
         weaponInfo = player.GetComponent<PlayerWeapon>();
         scoreInfo = player.GetComponent<PlayerScore>();
@@ -28,6 +35,8 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: 0";
         waveCounter.text = "Wave 1";
         currentWave = 1;
+
+        gameOverScreen.SetActive(false);
     }
 
     void Update()
@@ -45,11 +54,26 @@ public class GameManager : MonoBehaviour
 
     void Death()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameOverScreen.SetActive(true);
+        statsText.text = $"Waves Survived: {currentWave}\nFinal Score: {scoreInfo.GetScore()}";
+        gamePaused = true;
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void UpdateWave()
     {
         currentWave++;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
