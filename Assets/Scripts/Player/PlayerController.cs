@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     Transform cameraTransform;
     Vector3 playerVelocity = Vector3.zero;
     bool isGrounded;
-    float delayTime = 0.5f;
+    float delayTime = 0.2f;
     bool isWaiting;
 
     [SerializeField] GameObject bulletPrefab;
