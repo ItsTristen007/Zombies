@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     Vector3 playerVelocity = Vector3.zero;
     bool isGrounded;
     float delayTime = 0.2f;
+    float reloadTime = 0.75f;
     bool isWaiting;
 
     [SerializeField] GameObject bulletPrefab;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
     InputAction reload;
 
     public AudioClip shootSound;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -89,7 +91,6 @@ public class PlayerController : MonoBehaviour
             bullet.velocity = cameraTransform.forward * weapon.GetBulletSpeed();
             weapon.SetCurrentAmmo(weapon.GetCurrentAmmo() - 1);
 
-
             StartCoroutine(ShotDelay());
 
             AudioSource.PlayClipAtPoint(shootSound, new Vector3(GetComponent<Rigidbody>().position.x, GetComponent<Rigidbody>().position.y, GetComponent<Rigidbody>().position.z), 1f);
@@ -101,14 +102,27 @@ public class PlayerController : MonoBehaviour
     {
         if (!isWaiting && !GameManager.gamePaused)
         {
-            weapon.SetCurrentAmmo(weapon.GetMaxAmmo());
+            StartCoroutine(ReloadTime());
         }
+    }
+
+    void ReloadWeapon()
+    {
+        weapon.SetCurrentAmmo(weapon.GetMaxAmmo());
     }
 
     IEnumerator ShotDelay()
     {
         isWaiting = true;
         yield return new WaitForSeconds(delayTime);
+        isWaiting = false;
+    }
+
+    IEnumerator ReloadTime()
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(reloadTime);
+        ReloadWeapon();
         isWaiting = false;
     }
 }
