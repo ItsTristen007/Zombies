@@ -13,6 +13,17 @@ public class Spawner : MonoBehaviour
     int numSpawned;
     bool isSpawning = true;
     bool isWaiting;
+    bool waveStarting;
+
+    public bool GetWaveStarting()
+    {
+        return waveStarting;
+    }
+
+    public void SetWaveStarting(bool newState)
+    {
+        waveStarting = newState;
+    }
 
     void Awake()
     {
@@ -37,12 +48,9 @@ public class Spawner : MonoBehaviour
         else
         {
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            if (enemies.Length == 0)
+            if (enemies.Length == 0 && !isWaiting)
             {
-                if (!isWaiting)
-                {
-                    StartCoroutine(TimeUntilNewWave());
-                }
+                StartCoroutine(TimeUntilNewWave());
             }
         }
     }
@@ -60,8 +68,9 @@ public class Spawner : MonoBehaviour
         isWaiting = true;
         yield return new WaitForSeconds(timeBetweenWaves);
         numSpawned = 0;
-        gameManager.GetComponent<GameManager>().UpdateWave();
         waveSpawnNumber++;
+        isSpawning = true;
         isWaiting = false;
+        waveStarting = true;
     }
 }

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] TextMeshProUGUI statsText;
+    int mainMenuIndex = 0;
 
     void Awake()
     {
@@ -54,7 +55,6 @@ public class GameManager : MonoBehaviour
 
     void Death()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameOverScreen.SetActive(true);
         statsText.text = $"Waves Survived: {currentWave}\nFinal Score: {scoreInfo.GetScore()}";
         gamePaused = true;
@@ -72,8 +72,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void Quit()
+    public void MainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene(mainMenuIndex);
     }
 }
