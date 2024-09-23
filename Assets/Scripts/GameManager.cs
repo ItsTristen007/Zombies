@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
 
     void Death()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameOverScreen.SetActive(true);
         statsText.text = $"Waves Survived: {currentWave}\nFinal Score: {scoreInfo.GetScore()}";
         gamePaused = true;
