@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static bool gamePaused;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject enemy;
     PlayerHealth healthInfo;
     PlayerWeapon weaponInfo;
     PlayerScore scoreInfo;
@@ -18,9 +19,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI waveCounter;
     int currentWave;
 
+    float enemyStartHealth = 2f;
+    float enemyStartDamage = 25f;
+
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] TextMeshProUGUI statsText;
     int mainMenuIndex = 0;
+
+    public int GetCurrentWave()
+    {
+        return currentWave;
+    }
 
     void Awake()
     {
@@ -36,6 +45,9 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: 0";
         waveCounter.text = "Wave 1";
         currentWave = 1;
+
+        enemy.GetComponent<EnemyHealth>().SetMaxHealth(enemyStartHealth);
+        enemy.GetComponent<EnemyHealth>().SetDamage(enemyStartDamage);
 
         gameOverScreen.SetActive(false);
     }
