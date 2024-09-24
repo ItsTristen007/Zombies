@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     PlayerScore scoreInfo;
 
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] Slider healthSlider;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI waveCounter;
@@ -40,7 +42,8 @@ public class GameManager : MonoBehaviour
         weaponInfo = player.GetComponent<PlayerWeapon>();
         scoreInfo = player.GetComponent<PlayerScore>();
 
-        healthText.text = $"Health: {healthInfo.GetMaxHealth()}%";
+        healthText.text = $"{healthInfo.GetMaxHealth()}%";
+        healthSlider.value = healthInfo.GetMaxHealth();
         ammoText.text = $"Ammo: {weaponInfo.GetMaxAmmo()}/{weaponInfo.GetMaxAmmo()}";
         scoreText.text = "Score: 0";
         waveCounter.text = "Wave 1";
@@ -54,7 +57,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        healthText.text = $"Health: {healthInfo.GetCurrentHealth()}%";
+        healthText.text = $"{healthInfo.GetCurrentHealth()}%";
+        healthSlider.value = healthInfo.GetCurrentHealth();
         ammoText.text = $"Ammo: {weaponInfo.GetCurrentAmmo()}/{weaponInfo.GetMaxAmmo()}";
         scoreText.text = $"Score: {scoreInfo.GetScore()}";
         waveCounter.text = $"Wave {currentWave}";
@@ -67,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     void Death()
     {
+        healthInfo.SetCurrentHealth(0);
         gameOverScreen.SetActive(true);
         statsText.text = $"Waves Survived: {currentWave}\nFinal Score: {scoreInfo.GetScore()}";
         gamePaused = true;
