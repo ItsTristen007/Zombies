@@ -96,6 +96,10 @@ public class PlayerController : MonoBehaviour
             AudioSource.PlayClipAtPoint(shootSound, new Vector3(GetComponent<Rigidbody>().position.x, GetComponent<Rigidbody>().position.y, GetComponent<Rigidbody>().position.z), 1f);
 
         }
+        else if (weapon.GetCurrentAmmo() == 0 && !isWaiting && !GameManager.gamePaused)
+        {
+            StartCoroutine(ReloadTime());
+        }
     }
 
     private void Reload(InputAction.CallbackContext context)

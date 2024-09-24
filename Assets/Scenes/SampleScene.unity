@@ -1457,6 +1457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1782543547}
+  enemy: {fileID: 7578093814868514403, guid: 0aad1220f89612e4c983956a710fa930, type: 3}
   healthText: {fileID: 1148953934}
   ammoText: {fileID: 1025181310}
   scoreText: {fileID: 1485864677}
@@ -2781,6 +2782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 378038448}
+  enemy: {fileID: 7578093814868514403, guid: 0aad1220f89612e4c983956a710fa930, type: 3}
 --- !u!4 &1470050590
 Transform:
   m_ObjectHideFlags: 0

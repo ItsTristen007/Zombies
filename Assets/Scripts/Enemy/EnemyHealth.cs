@@ -10,6 +10,16 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float damage = 25f;
     [SerializeField] float points = 10f;
 
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public void SetMaxHealth(float newHealth)
+    {
+        maxHealth = newHealth;
+    }
+
     public float GetDamage()
     {
         return damage;

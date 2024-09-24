@@ -6,6 +6,8 @@ public class SpawnManager : MonoBehaviour
 {
     GameObject gameManager;
     [SerializeField] GameObject spawner;
+    [SerializeField] GameObject enemy;
+    bool healthIncreased;
 
     void Awake()
     {
@@ -18,6 +20,12 @@ public class SpawnManager : MonoBehaviour
         {
             gameManager.GetComponent<GameManager>().UpdateWave();
             spawner.GetComponent<Spawner>().SetWaveStarting(false);
+        }
+
+        if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 5 == 0 && !healthIncreased)
+        {
+            enemy.GetComponent<EnemyHealth>().SetMaxHealth(enemy.GetComponent<EnemyHealth>().GetMaxHealth() + 1);
+            healthIncreased = true;
         }
     }
 }
