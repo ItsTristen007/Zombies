@@ -25,6 +25,11 @@ public class EnemyHealth : MonoBehaviour
         return damage;
     }
 
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
+
     void Awake()
     {
         player = GameObject.FindWithTag("Player");

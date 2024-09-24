@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     int currentWave;
 
     float enemyStartHealth = 2f;
+    float enemyStartDamage = 25f;
 
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] TextMeshProUGUI statsText;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         currentWave = 1;
 
         enemy.GetComponent<EnemyHealth>().SetMaxHealth(enemyStartHealth);
+        enemy.GetComponent<EnemyHealth>().SetDamage(enemyStartDamage);
 
         gameOverScreen.SetActive(false);
     }
