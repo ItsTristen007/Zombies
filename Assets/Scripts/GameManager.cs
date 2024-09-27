@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     float enemyStartDamage = 25f;
 
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject victoryPanel;
+    [SerializeField] GameObject deathPanel;
     [SerializeField] TextMeshProUGUI statsText;
     int mainMenuIndex = 0;
 
@@ -76,11 +78,13 @@ public class GameManager : MonoBehaviour
 
         if (healthInfo.GetCurrentHealth() <= 0)
         {
-            Death();
+            deathPanel.SetActive(true);
+            victoryPanel.SetActive(false);
+            GameOver();
         }
     }
 
-    void Death()
+    void GameOver()
     {
         healthInfo.SetCurrentHealth(0);
         gameOverScreen.SetActive(true);
@@ -92,7 +96,16 @@ public class GameManager : MonoBehaviour
 
     public void UpdateWave()
     {
-        currentWave++;
+        if (currentWave < 30)
+        {
+            currentWave++;
+        }
+        else
+        {
+            victoryPanel.SetActive(true);
+            deathPanel.SetActive(false);
+            GameOver();
+        }
     }
 
     public void Restart()
