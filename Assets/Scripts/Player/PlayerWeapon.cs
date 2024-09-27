@@ -4,44 +4,24 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [SerializeField] float maxAmmo1 = 10f;
-    [SerializeField] float maxAmmo2 = 10f;
-    float currentAmmo1;
-    float currentAmmo2;
+    [SerializeField] float maxAmmo = 10f;
+    float currentAmmo;
     [SerializeField] float bulletSpeed = 40f;
     [SerializeField] float bulletDamage = 1f;
 
-    bool usingWeapon1;
-    bool usingWeapon2;
-
-    public float GetMaxAmmo1()
+    public float GetMaxAmmo()
     {
-        return maxAmmo1;
+        return maxAmmo;
     }
 
-    public float GetMaxAmmo2()
+    public float GetCurrentAmmo()
     {
-        return maxAmmo2;
+        return currentAmmo;
     }
 
-    public float GetCurrentAmmo1()
+    public void SetCurrentAmmo(float newAmmo)
     {
-        return currentAmmo1;
-    }
-
-    public void SetCurrentAmmo1(float newAmmo)
-    {
-        currentAmmo1 = newAmmo;
-    }
-
-    public float GetCurrentAmmo2()
-    {
-        return currentAmmo2;
-    }
-
-    public void SetCurrentAmmo2(float newAmmo2)
-    {
-        currentAmmo2 = newAmmo2;
+        currentAmmo = newAmmo;
     }
 
     public float GetBulletSpeed()
@@ -54,30 +34,8 @@ public class PlayerWeapon : MonoBehaviour
         return bulletDamage;
     }
 
-    public bool UsingWeapon1()
-    {
-        return usingWeapon1;
-    }
-
-    public void SetWeapon1(bool newState)
-    {
-        usingWeapon1 = newState;
-    }
-
-    public bool UsingWeapon2()
-    {
-        return usingWeapon2;
-    }
-
-    public void SetWeapon2(bool newState)
-    {
-        usingWeapon2 = newState;
-    }
-
     void Awake()
     {
-        currentAmmo1 = maxAmmo1;
-        usingWeapon1 = true;
-        usingWeapon2 = false;
+        currentAmmo = maxAmmo;
     }
 }

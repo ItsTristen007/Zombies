@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     InputAction look;
     InputAction shoot;
     InputAction reload;
-    InputAction switchWeapon;
 
     public AudioClip shootSound;
 
@@ -56,10 +55,6 @@ public class PlayerController : MonoBehaviour
         reload = playerInputs.Player.Reload;
         reload.Enable();
         reload.performed += Reload;
-
-        switchWeapon = playerInputs.Player.SwitchWeapon;
-        switchWeapon.Enable();
-        switchWeapon.performed += SwitchWeapon;
     }
 
     private void OnDisable()
@@ -68,7 +63,6 @@ public class PlayerController : MonoBehaviour
         look.Disable();
         shoot.Disable();
         reload.Disable();
-        switchWeapon.Disable();
     }
 
     void Update()
@@ -91,18 +85,18 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext context)
     {
-        if (weapon.GetCurrentAmmo1() > 0 && !isWaiting && !GameManager.gamePaused)
+        if (weapon.GetCurrentAmmo() > 0 && !isWaiting && !GameManager.gamePaused)
         {
             Rigidbody bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();
             bullet.velocity = cameraTransform.forward * weapon.GetBulletSpeed();
-            weapon.SetCurrentAmmo1(weapon.GetCurrentAmmo1() - 1);
+            weapon.SetCurrentAmmo(weapon.GetCurrentAmmo() - 1);
 
             StartCoroutine(ShotDelay());
 
             AudioSource.PlayClipAtPoint(shootSound, new Vector3(GetComponent<Rigidbody>().position.x, GetComponent<Rigidbody>().position.y, GetComponent<Rigidbody>().position.z), 1f);
 
         }
-        else if (weapon.GetCurrentAmmo1() == 0 && !isWaiting && !GameManager.gamePaused)
+        else if (weapon.GetCurrentAmmo() == 0 && !isWaiting && !GameManager.gamePaused)
         {
             StartCoroutine(ReloadTime());
         }
@@ -116,14 +110,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SwitchWeapon(InputAction.CallbackContext context)
-    {
-        Debug.Log("Switching weapon!");
-    }
-
     void ReloadWeapon()
     {
-        weapon.SetCurrentAmmo1(weapon.GetMaxAmmo1());
+        weapon.SetCurrentAmmo(weapon.GetMaxAmmo());
     }
 
     IEnumerator ShotDelay()
