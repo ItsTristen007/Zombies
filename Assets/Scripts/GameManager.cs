@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] Slider healthSlider;
     [SerializeField] TextMeshProUGUI ammoText;
+    [SerializeField] GameObject lowAmmoText;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI waveCounter;
     int currentWave;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         healthText.text = $"{healthInfo.GetMaxHealth()}%";
         healthSlider.value = healthInfo.GetMaxHealth();
         ammoText.text = $"Ammo: {weaponInfo.GetMaxAmmo()}/{weaponInfo.GetMaxAmmo()}";
+        lowAmmoText.SetActive(false);
         scoreText.text = "Score: 0";
         waveCounter.text = "Wave 1";
         currentWave = 1;
@@ -60,6 +62,15 @@ public class GameManager : MonoBehaviour
         healthText.text = $"{healthInfo.GetCurrentHealth()}%";
         healthSlider.value = healthInfo.GetCurrentHealth();
         ammoText.text = $"Ammo: {weaponInfo.GetCurrentAmmo()}/{weaponInfo.GetMaxAmmo()}";
+        if (weaponInfo.GetCurrentAmmo() <= 3)
+        {
+            lowAmmoText.SetActive(true);
+        }
+        else
+        {
+            lowAmmoText.SetActive(false);
+        }
+
         scoreText.text = $"Score: {scoreInfo.GetScore()}";
         waveCounter.text = $"Wave {currentWave}";
 
