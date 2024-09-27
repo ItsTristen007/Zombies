@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
         healthText.text = $"{healthInfo.GetMaxHealth()}%";
         healthSlider.value = healthInfo.GetMaxHealth();
-        ammoText.text = $"Ammo: {weaponInfo.GetMaxAmmo()}/{weaponInfo.GetMaxAmmo()}";
+        ammoText.text = $"Ammo: {weaponInfo.GetMaxAmmo1()}/{weaponInfo.GetMaxAmmo1()}";
         scoreText.text = "Score: 0";
         waveCounter.text = "Wave 1";
         currentWave = 1;
@@ -59,7 +59,16 @@ public class GameManager : MonoBehaviour
     {
         healthText.text = $"{healthInfo.GetCurrentHealth()}%";
         healthSlider.value = healthInfo.GetCurrentHealth();
-        ammoText.text = $"Ammo: {weaponInfo.GetCurrentAmmo()}/{weaponInfo.GetMaxAmmo()}";
+
+        if (weaponInfo.UsingWeapon1())
+        {
+            ammoText.text = $"Ammo: {weaponInfo.GetCurrentAmmo1()}/{weaponInfo.GetMaxAmmo1()}";
+        }
+        else if (weaponInfo.UsingWeapon2())
+        {
+            ammoText.text = $"Ammo: {weaponInfo.GetCurrentAmmo2()}/{weaponInfo.GetMaxAmmo2()}";
+        }
+
         scoreText.text = $"Score: {scoreInfo.GetScore()}";
         waveCounter.text = $"Wave {currentWave}";
 
