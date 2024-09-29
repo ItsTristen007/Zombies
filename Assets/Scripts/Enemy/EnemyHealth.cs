@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float points = 10f;
 
     int powerUpDropChance;
+    int powerUpType;
 
     public float GetMaxHealth()
     {
@@ -49,10 +50,11 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        powerUpDropChance = Random.Range(0, 50);
-        if (powerUpDropChance == 25)
+        powerUpDropChance = Random.Range(0, 20);
+        if (powerUpDropChance == 10)
         {
-            Instantiate(powerUpPrefab[0], transform.position, Quaternion.identity);
+            powerUpType = Random.Range(0, 4);
+            Instantiate(powerUpPrefab[powerUpType], transform.position, Quaternion.identity);
         }
         Destroy(gameObject);
         player.GetComponent<PlayerScore>().ChangeScore(points);
