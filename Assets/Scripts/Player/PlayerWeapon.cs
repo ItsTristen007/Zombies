@@ -34,6 +34,11 @@ public class PlayerWeapon : MonoBehaviour
         return bulletDamage;
     }
 
+    public void SetBulletDamage(float newDamage)
+    {
+        bulletDamage = newDamage;
+    }
+
     void Awake()
     {
         currentAmmo = maxAmmo;

@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Spawner
   - Instakill
+  - InfiniteAmmo
+  - DoublePoints
+  - Nuke
   layers:
   - Default
   - TransparentFX
