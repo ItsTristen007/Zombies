@@ -34,6 +34,16 @@ public class EnemyHealth : MonoBehaviour
         damage = newDamage;
     }
 
+    public float GetPoints()
+    {
+        return points;
+    }
+
+    public void SetPoints(float newPoints)
+    {
+        points = newPoints;
+    }
+
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
