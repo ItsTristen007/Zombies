@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     float enemyStartHealth = 2f;
     float enemyStartDamage = 25f;
+    float enemyStartPoints = 10f;
 
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject victoryPanel;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
 
         enemy.GetComponent<EnemyHealth>().SetMaxHealth(enemyStartHealth);
         enemy.GetComponent<EnemyHealth>().SetDamage(enemyStartDamage);
+        enemy.GetComponent<EnemyHealth>().SetPoints(enemyStartPoints);
 
         gameOverScreen.SetActive(false);
     }
