@@ -186,6 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  powerUpPrefab:
+  - {fileID: 1726695054625644448, guid: 671e856b1e91bc447bb9cc4a4ce898d8, type: 3}
   maxHealth: 2
   damage: 25
   points: 10

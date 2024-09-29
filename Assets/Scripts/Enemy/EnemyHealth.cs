@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] GameObject[] powerUpPrefab;
     [SerializeField] float maxHealth = 5f;
     float currentHealth;
     [SerializeField] float damage = 25f;
     [SerializeField] float points = 10f;
+
+    int powerUpDropChance;
 
     public float GetMaxHealth()
     {
@@ -46,6 +49,11 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        powerUpDropChance = Random.Range(0, 50);
+        if (powerUpDropChance == 25)
+        {
+            Instantiate(powerUpPrefab[0], transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
         player.GetComponent<PlayerScore>().ChangeScore(points);
     }
