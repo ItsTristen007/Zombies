@@ -51,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (!isInvulnerable)
             {
-                ChangeHealth(-enemy.GetComponent<EnemyHealth>().GetDamage());
+                ChangeHealth(-collision.gameObject.GetComponent<EnemyHealth>().GetDamage());
                 StartCoroutine(InvulnerableTime());
                 StartCoroutine(HealWaitTime());
             }

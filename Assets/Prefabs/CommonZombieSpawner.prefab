@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5084566786262174771}
   - component: {fileID: 6245848012622590132}
   m_Layer: 0
-  m_Name: ZombieSpawner
+  m_Name: CommonZombieSpawner
   m_TagString: Spawner
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -47,4 +47,4 @@ MonoBehaviour:
   enemy: {fileID: 7578093814868514403, guid: 0aad1220f89612e4c983956a710fa930, type: 3}
   timeBeforeSpawn: 2.5
   timeBetweenWaves: 5
-  waveSpawnNumber: 3
+  waveSpawnNumber: 1
