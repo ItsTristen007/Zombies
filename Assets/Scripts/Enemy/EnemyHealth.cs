@@ -63,6 +63,7 @@ public class EnemyHealth : MonoBehaviour
         powerUpDropChance = Random.Range(0, 20);
         if (powerUpDropChance == 10 && !player.GetComponent<CollectPowerUp>().GetPowerUpActive())
         {
+            player.GetComponent<CollectPowerUp>().SetPowerUpActive(true);
             powerUpType = Random.Range(0, 4);
             Instantiate(powerUpPrefab[powerUpType], transform.position, Quaternion.identity);
         }

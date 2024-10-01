@@ -29,6 +29,11 @@ public class CollectPowerUp : MonoBehaviour
         return powerUpActive;
     }
 
+    public void SetPowerUpActive(bool newState)
+    {
+        powerUpActive = newState;
+    }
+
     void Awake()
     {
         powerUpText.text = "";
@@ -69,6 +74,7 @@ public class CollectPowerUp : MonoBehaviour
         }
         else
         {
+            timer = powerUpTimer;
             powerUpText.text = "";
             powerUpActive = false;
         }
