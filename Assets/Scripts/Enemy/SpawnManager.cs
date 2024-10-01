@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     GameObject gameManager;
     [SerializeField] GameObject spawner;
     [SerializeField] GameObject enemy;
+    [SerializeField] GameObject bruteSpawner;
     EnemyHealth enemyStats;
     bool healthIncreased;
     bool damageIncreased;
@@ -25,6 +26,10 @@ public class SpawnManager : MonoBehaviour
             spawner.GetComponent<Spawner>().SetWaveStarting(false);
             healthIncreased = false;
             damageIncreased = false;
+            if (gameManager.GetComponent<GameManager>().GetCurrentWave() == 5)
+            {
+                bruteSpawner.SetActive(true);
+            }
         }
 
         if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 5 == 0 && !healthIncreased)

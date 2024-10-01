@@ -68,7 +68,10 @@ public class Spawner : MonoBehaviour
         isWaiting = true;
         yield return new WaitForSeconds(timeBetweenWaves);
         numSpawned = 0;
-        waveSpawnNumber++;
+        if (enemy.name == "CommonEnemy")
+        {
+            waveSpawnNumber++;
+        }
         isSpawning = true;
         isWaiting = false;
         waveStarting = true;
