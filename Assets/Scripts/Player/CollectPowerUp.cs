@@ -76,7 +76,6 @@ public class CollectPowerUp : MonoBehaviour
         {
             timer = powerUpTimer;
             powerUpText.text = "";
-            powerUpActive = false;
         }
     }
 
@@ -142,6 +141,7 @@ public class CollectPowerUp : MonoBehaviour
         yield return new WaitForSeconds(powerUpTimer);
         weapon.SetBulletDamage(normalDamage);
         instakill = false;
+        powerUpActive = false;
     }
 
     IEnumerator PaperStackTime()
@@ -149,6 +149,7 @@ public class CollectPowerUp : MonoBehaviour
         infiniteAmmo = true;
         yield return new WaitForSeconds(powerUpTimer);
         infiniteAmmo = false;
+        powerUpActive = false;
     }
 
     IEnumerator PhotocopierTime()
@@ -162,12 +163,15 @@ public class CollectPowerUp : MonoBehaviour
             enemy.GetComponent<EnemyHealth>().SetPoints(normalPoints);
         }
         doublePoints = false;
+        powerUpActive = false;
     }
 
     IEnumerator PaperShredderTime()
     {
         nuke = true;
         yield return new WaitForSeconds(3f);
+        GetComponent<PlayerScore>().ChangeScore(50);
         nuke = false;
+        powerUpActive = false;
     }
 }
