@@ -17,7 +17,15 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        agent.SetDestination(player.transform.position);
+        
+        if(GetComponent<Transform>().rotation.z >0)
+        {
+            agent.isStopped = true;
+        }
+        else
+        {
+            agent.SetDestination(player.transform.position);
+        }
     }
 
 }
