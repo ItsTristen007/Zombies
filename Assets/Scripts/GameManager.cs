@@ -1,13 +1,12 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool gamePaused;
     [SerializeField] GameObject player;
     [SerializeField] GameObject enemy;
     PlayerHealth healthInfo;
@@ -30,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject victoryPanel;
     [SerializeField] GameObject deathPanel;
     [SerializeField] TextMeshProUGUI statsText;
-    int mainMenuIndex = 0;
+    [SerializeField] CinemachineVirtualCamera vCamera;
 
     public int GetCurrentWave()
     {
@@ -39,9 +38,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        gamePaused = false;
-        Time.timeScale = 1.0f;
-
         healthInfo = player.GetComponent<PlayerHealth>();
         weaponInfo = player.GetComponent<PlayerWeapon>();
         scoreInfo = player.GetComponent<PlayerScore>();
@@ -91,8 +87,9 @@ public class GameManager : MonoBehaviour
         healthInfo.SetCurrentHealth(0);
         gameOverScreen.SetActive(true);
         statsText.text = $"Waves Survived: {currentWave}\nFinal Score: {scoreInfo.GetScore()}";
-        gamePaused = true;
+        UIManager.gamePaused = true;
         Time.timeScale = 0f;
+        vCamera.enabled = false;
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -110,13 +107,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void MainMenu()
-    {
-        SceneManager.LoadScene(mainMenuIndex);
-    }
 }

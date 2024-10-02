@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext context)
     {
-        if (weapon.GetCurrentAmmo() > 0 && !isWaiting && !GameManager.gamePaused)
+        if (weapon.GetCurrentAmmo() > 0 && !isWaiting && !UIManager.gamePaused)
         {
             Rigidbody bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();
             bullet.velocity = cameraTransform.forward * weapon.GetBulletSpeed();
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
             AudioSource.PlayClipAtPoint(shootSound, new Vector3(GetComponent<Rigidbody>().position.x, GetComponent<Rigidbody>().position.y, GetComponent<Rigidbody>().position.z), 1f);
 
         }
-        else if (weapon.GetCurrentAmmo() == 0 && !isWaiting && !GameManager.gamePaused)
+        else if (weapon.GetCurrentAmmo() == 0 && !isWaiting && !UIManager.gamePaused)
         {
             StartCoroutine(ReloadTime());
         }
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private void Reload(InputAction.CallbackContext context)
     {
-        if (!isWaiting && !GameManager.gamePaused)
+        if (!isWaiting && !UIManager.gamePaused)
         {
             StartCoroutine(ReloadTime());
         }
