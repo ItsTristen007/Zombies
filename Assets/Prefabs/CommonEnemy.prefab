@@ -194,3 +194,4 @@ MonoBehaviour:
   maxHealth: 2
   damage: 25
   points: 10
+  enemy: {fileID: 7578093814868514403}

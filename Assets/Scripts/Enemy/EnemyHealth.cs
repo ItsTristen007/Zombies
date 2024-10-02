@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     float currentHealth;
     [SerializeField] float damage = 25f;
     [SerializeField] float points = 10f;
+    [SerializeField] GameObject enemy;
 
     int powerUpDropChance;
     int powerUpType;
@@ -48,13 +49,25 @@ public class EnemyHealth : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         currentHealth = maxHealth;
+       
     }
 
     void Update()
     {
         if (currentHealth <= 0)
         {
-            Die();
+
+
+
+
+
+
+
+            this.GetComponent<Transform>().Rotate(0, 0, 90);
+            
+            Invoke("Die", (float)0.15);
+            
+           
         }
     }
 
@@ -79,5 +92,7 @@ public class EnemyHealth : MonoBehaviour
             currentHealth -= player.GetComponent<PlayerWeapon>().GetBulletDamage();
         }
     }
+
+   
 
 }
