@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
 
     int powerUpDropChance;
     int powerUpType;
+    bool chanceCalculated;
 
     public float GetMaxHealth()
     {
@@ -23,6 +24,11 @@ public class EnemyHealth : MonoBehaviour
     public void SetMaxHealth(float newHealth)
     {
         maxHealth = newHealth;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
     public float GetDamage()
@@ -50,29 +56,39 @@ public class EnemyHealth : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         currentHealth = maxHealth;
         pointsGiven = false;
-       
+        chanceCalculated = false;
     }
 
     void Update()
     {
         if (currentHealth <= 0)
         {
-            this.GetComponent<Transform>().Rotate(0, 0, 90);
+            transform.Rotate(-90, 0, 0);
+            transform.position -= new Vector3(0, 0.5f, 0);
+
+            GetComponent<Collider>().enabled = false;
             
-            Invoke("Die", (float)0.15);
+            Invoke("Die", 0.5f);
         }
     }
 
     void Die()
     {
-        powerUpDropChance = Random.Range(0, 30);
-        if (powerUpDropChance == 15 && !player.GetComponent<CollectPowerUp>().GetPowerUpActive())
+        var randomNum = -1;
+        if (!chanceCalculated)
+        {
+            powerUpDropChance = Random.Range(0, 41);
+            randomNum = Random.Range(0, 41);
+            chanceCalculated = true;
+        }
+
+        if (powerUpDropChance == randomNum && !player.GetComponent<CollectPowerUp>().GetPowerUpActive())
         {
             player.GetComponent<CollectPowerUp>().SetPowerUpActive(true);
             powerUpType = Random.Range(0, 4);
-            Instantiate(powerUpPrefab[powerUpType], transform.position, Quaternion.identity);
+            Instantiate(powerUpPrefab[powerUpType], transform.position + Vector3.up * 0.5f, Quaternion.identity);
         }
-        Destroy(gameObject);
+
         if (!pointsGiven)
         {
             player.GetComponent<PlayerScore>().ChangeScore(points);
