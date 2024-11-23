@@ -5021,7 +5021,7 @@ MonoBehaviour:
   - {fileID: 7173275291917922800, guid: f15a27c5738f44f448c10064e9406ec3, type: 3}
   - {fileID: 8200569855210346781, guid: 5b9ba75c5fe667345be9802a2dd7e9b2, type: 3}
   - {fileID: 3136387780253450297, guid: fa6134710c369384685397a00f5e3658, type: 3}
-  maxHealth: 2
+  maxHealth: 30
   damage: 25
   points: 10
 --- !u!114 &3098755738655070894
