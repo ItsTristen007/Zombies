@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI waveCounter;
     int currentWave;
 
-    float enemyStartHealth = 2f;
+    float enemyStartHealth = 30f;
     float enemyStartDamage = 25f;
     float enemyStartPoints = 10f;
 
