@@ -109,8 +109,6 @@ public class PlayerController : MonoBehaviour
         if (!isWaiting && !UIManager.gamePaused)
         {
             StartCoroutine(ReloadTime());
-
-            source.PlayOneShot(reloadSound, 1f);
         }
     }
 
@@ -128,6 +126,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ReloadTime()
     {
+        source.PlayOneShot(reloadSound, 1f);
         isWaiting = true;
         yield return new WaitForSeconds(reloadSpeed);
         ReloadWeapon();
