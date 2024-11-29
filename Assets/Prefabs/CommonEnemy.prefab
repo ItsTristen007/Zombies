@@ -4981,6 +4981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  moveSpeed: 3
 --- !u!195 &322651068027043649
 NavMeshAgent:
   m_ObjectHideFlags: 0

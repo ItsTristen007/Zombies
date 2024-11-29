@@ -8,11 +8,13 @@ public class EnemyController : MonoBehaviour
 {
     NavMeshAgent agent;
     [SerializeField] GameObject player;
+    [SerializeField] float moveSpeed = 3f;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
+        agent.speed = moveSpeed;
     }
 
     void Update()

@@ -28,7 +28,9 @@ public class PlayerController : MonoBehaviour
     InputAction shoot;
     InputAction reload;
 
+    AudioSource source;
     public AudioClip shootSound;
+    public AudioClip reloadSound;
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         playerInputs = new Inputs();
         Cursor.lockState = CursorLockMode.Locked;
+        source = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -93,8 +96,7 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(ShotDelay());
 
-            AudioSource.PlayClipAtPoint(shootSound, new Vector3(GetComponent<Rigidbody>().position.x, GetComponent<Rigidbody>().position.y, GetComponent<Rigidbody>().position.z), 1f);
-
+            source.PlayOneShot(shootSound);
         }
         else if (weapon.GetCurrentAmmo() == 0 && !isWaiting && !UIManager.gamePaused)
         {
@@ -107,6 +109,8 @@ public class PlayerController : MonoBehaviour
         if (!isWaiting && !UIManager.gamePaused)
         {
             StartCoroutine(ReloadTime());
+
+            source.PlayOneShot(reloadSound, 1f);
         }
     }
 
