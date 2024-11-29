@@ -6314,6 +6314,7 @@ MonoBehaviour:
     type: 3}
   bulletSpawn: {fileID: 2007735593}
   shootSound: {fileID: 8300000, guid: efe113228b06f0941a7b8037cb001f1c, type: 3}
+  reloadSound: {fileID: 8300000, guid: e9142e88434649049aec4acb5b57d607, type: 3}
 --- !u!143 &1782543555
 CharacterController:
   m_ObjectHideFlags: 0
