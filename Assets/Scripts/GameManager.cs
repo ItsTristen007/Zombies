@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         healthText.text = $"{healthInfo.GetCurrentHealth()}%";
         healthSlider.value = healthInfo.GetCurrentHealth();
         ammoText.text = $"{weaponInfo.GetCurrentAmmo()}/{weaponInfo.GetMaxAmmo()}";
-        if (weaponInfo.GetCurrentAmmo() <= 3)
+        if (weaponInfo.GetCurrentAmmo() <= (weaponInfo.GetMaxAmmo() / 4f))
         {
             lowAmmoText.SetActive(true);
         }
