@@ -27,6 +27,10 @@ public class UIManager : MonoBehaviour
         {
             Pause();
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && gamePaused)
+        {
+            Resume();
+        }
     }
 
     void LockCamera()

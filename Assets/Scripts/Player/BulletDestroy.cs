@@ -16,4 +16,12 @@ public class BulletDestroy : MonoBehaviour
         yield return new WaitForSeconds(timer);
         Destroy(gameObject);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Environment"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
