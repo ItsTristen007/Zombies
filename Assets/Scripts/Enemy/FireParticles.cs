@@ -20,6 +20,7 @@ public class FireParticles : MonoBehaviour
             {
                 particles.Play();
                 startedParticles = true;
+                GetComponent<Renderer>().material.color = Color.gray;
                 Destroy(gameObject, particles.main.duration);
             }
         }
