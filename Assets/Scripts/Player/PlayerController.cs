@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     PlayerWeapon weapon;
     [SerializeField] float moveSpeed = 5f;
+    float normalSpeed = 5f;
     float gravityValue = -9.81f;
 
     Vector2 moveDirection = Vector2.zero;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     InputAction look;
     InputAction shoot;
     InputAction reload;
+    InputAction sprint;
 
     AudioSource source;
     public AudioClip shootSound;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
         weapon = GetComponent<PlayerWeapon>();
+        normalSpeed = moveSpeed;
         cameraTransform = Camera.main.transform;
         playerInputs = new Inputs();
         Cursor.lockState = CursorLockMode.Locked;
@@ -58,6 +61,10 @@ public class PlayerController : MonoBehaviour
         reload = playerInputs.Player.Reload;
         reload.Enable();
         reload.performed += Reload;
+
+        sprint = playerInputs.Player.Sprint;
+        sprint.Enable();
+        sprint.performed += Sprint;
     }
 
     private void OnDisable()
@@ -66,6 +73,7 @@ public class PlayerController : MonoBehaviour
         look.Disable();
         shoot.Disable();
         reload.Disable();
+        sprint.Disable();
     }
 
     void Update()
@@ -84,6 +92,11 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        if (sprint.WasReleasedThisFrame())
+        {
+            moveSpeed = normalSpeed;
+        }
     }
 
     private void Shoot(InputAction.CallbackContext context)
@@ -110,6 +123,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(ReloadTime());
         }
+    }
+
+    private void Sprint(InputAction.CallbackContext context)
+    {
+        moveSpeed *= 1.5f;
     }
 
     void ReloadWeapon()

@@ -77,8 +77,8 @@ public class EnemyHealth : MonoBehaviour
         var randomNum = -1;
         if (!chanceCalculated)
         {
-            powerUpDropChance = Random.Range(0, 41);
-            randomNum = Random.Range(0, 41);
+            powerUpDropChance = Random.Range(0, 21);
+            randomNum = Random.Range(0, 21);
             chanceCalculated = true;
         }
 

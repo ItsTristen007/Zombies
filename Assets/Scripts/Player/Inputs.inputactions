@@ -42,9 +42,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchWeapon",
+                    "name": "Sprint",
+                    "type": "Value",
+                    "id": "c1434302-9890-458e-b897-f33de32a1ad9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "2a5f5e67-6c6b-4c7a-9028-e35255b2cd35",
+                    "id": "da83002b-273c-4f0c-a4d1-45f15fd058ee",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -274,6 +283,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a4a4b276-a9e0-47bb-a30c-b1cdd9421180",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "26c5e911-7e1b-4764-a246-b0dbc74a3882",
                     "path": "<Keyboard>/r",
                     "interactions": "",
@@ -285,12 +305,45 @@
                 },
                 {
                     "name": "",
-                    "id": "fa1ef8b7-3750-48c0-b32e-899a49f25857",
-                    "path": "<Keyboard>/q",
+                    "id": "158b10d1-422e-4221-b462-5e560dfc8c9b",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchWeapon",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3d86f5e-ccfa-4e32-81dd-b9adce0b0081",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7334a61-7e73-417c-bcab-960407718959",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "022e62ac-bbb7-4b4c-9c71-77a19f203c7c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
