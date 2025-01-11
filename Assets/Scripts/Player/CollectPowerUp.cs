@@ -82,7 +82,7 @@ public class CollectPowerUp : MonoBehaviour
     void Stapler()
     {
         powerUpActive = true;
-        weapon.SetBulletDamage(normalDamage * 5f);
+        weapon.SetBulletDamage(normalDamage * 10f);
         StartCoroutine(StaplerTime());
     }
 

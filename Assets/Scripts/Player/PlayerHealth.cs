@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] CinemachineVirtualCamera vCam;
+    CinemachineBasicMultiChannelPerlin noise;
     [SerializeField] GameObject enemy;
     [SerializeField] float maxHealth = 100;
     float currentHealth;
     [SerializeField] float timeBeforeRegen = 2.5f;
     [SerializeField] float invulnerableTime = 0.5f;
     bool isInvulnerable;
+    float shakeTime = 0.15f;
 
     public float GetMaxHealth()
     {
@@ -29,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake()
     {
+        noise = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         currentHealth = maxHealth;
     }
 
@@ -54,6 +59,7 @@ public class PlayerHealth : MonoBehaviour
                 ChangeHealth(-collision.gameObject.GetComponent<EnemyHealth>().GetDamage());
                 StartCoroutine(InvulnerableTime());
                 StartCoroutine(HealWaitTime());
+                StartCoroutine(CameraShake());
             }
         }
     }
@@ -73,6 +79,15 @@ public class PlayerHealth : MonoBehaviour
         {
             ChangeHealth(maxHealth);
         }
+    }
+
+    IEnumerator CameraShake()
+    {
+        noise.m_AmplitudeGain = 4;
+        noise.m_FrequencyGain = 4;
+        yield return new WaitForSeconds(shakeTime);
+        noise.m_AmplitudeGain = 0;
+        noise.m_FrequencyGain = 0;
     }
 
 }
