@@ -1,21 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class OptionsMenu : MonoBehaviour
 {
-    [SerializeField] Slider volumeSlider;
-    [SerializeField] Slider xSensitivitySlider;
-    [SerializeField] Slider ySensitivitySlider;
+    [SerializeField] AudioMixer audioMixer;
 
-    void Awake()
+    public void SetVolume(float volume)
     {
-        
+        audioMixer.SetFloat("volume", volume);
     }
 
-    void Update()
-    {
-        
-    }
 }
