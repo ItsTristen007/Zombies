@@ -59,6 +59,7 @@ public class CollectPowerUp : MonoBehaviour
         }
         else if (infiniteAmmo)
         {
+            maxAmmo = weapon.GetMaxAmmo();
             timer = timer - Time.deltaTime;
             weapon.SetCurrentAmmo(maxAmmo);
             powerUpText.text = string.Format("Paper Stack ({0:#.})", timer);

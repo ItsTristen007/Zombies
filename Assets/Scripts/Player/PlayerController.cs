@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     Transform cameraTransform;
     Vector3 playerVelocity = Vector3.zero;
     bool isGrounded;
-    [SerializeField] float fireRate = 0.2f;
-    [SerializeField] float reloadSpeed = 0.75f;
     bool isWaiting;
 
     [SerializeField] GameObject bulletPrefab;
@@ -138,7 +136,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator ShotDelay()
     {
         isWaiting = true;
-        yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSeconds(weapon.GetFireRate());
         isWaiting = false;
     }
 
@@ -146,7 +144,7 @@ public class PlayerController : MonoBehaviour
     {
         source.PlayOneShot(reloadSound, 1f);
         isWaiting = true;
-        yield return new WaitForSeconds(reloadSpeed);
+        yield return new WaitForSeconds(weapon.GetReloadSpeed());
         ReloadWeapon();
         isWaiting = false;
     }

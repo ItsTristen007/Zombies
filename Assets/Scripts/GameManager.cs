@@ -17,9 +17,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slider healthSlider;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] GameObject lowAmmoText;
+    [SerializeField] TextMeshProUGUI currentWeaponText;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI waveCounter;
     int currentWave;
+    int maxWave = 20;
+    bool newWeapon;
 
     float enemyStartHealth = 30f;
     float enemyStartDamage = 25f;
@@ -95,9 +98,47 @@ public class GameManager : MonoBehaviour
 
     public void UpdateWave()
     {
-        if (currentWave < 30)
+        if (currentWave < maxWave)
         {
             currentWave++;
+            newWeapon = false;
+
+            while (!newWeapon)
+            {
+                // Switch statement that randomly chooses a weapon for the player to use each wave
+                // Also checks if the player gets the same weapon they already have, and will loop until they get a new weapon
+                int randNum = Random.Range(0, 3);
+                switch (randNum)
+                {
+                    case 0:
+                        if (currentWeaponText.text != "Pistol")
+                        {
+                            weaponInfo.SwitchToPistol();
+                            currentWeaponText.text = "Pistol";
+                            newWeapon = true;
+                        }
+                        break;
+                    case 1:
+                        if (currentWeaponText.text != "Shotgun")
+                        {
+                            weaponInfo.SwitchToShotgun();
+                            currentWeaponText.text = "Shotgun";
+                            newWeapon = true;
+                        }
+                        break;
+                    case 2:
+                        if (currentWeaponText.text != "SMG")
+                        {
+                            weaponInfo.SwitchToSMG();
+                            currentWeaponText.text = "SMG";
+                            newWeapon = true;
+                        }
+                        break;
+                    default:
+                        Debug.Log("An error has occurred");
+                        break;
+                }
+            }
         }
         else
         {
