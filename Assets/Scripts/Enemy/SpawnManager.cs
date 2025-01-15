@@ -34,7 +34,7 @@ public class SpawnManager : MonoBehaviour
 
         if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 5 == 0 && !healthIncreased)
         {
-            enemyStats.SetMaxHealth(enemyStats.GetMaxHealth() + 1);
+            enemyStats.SetMaxHealth(enemyStats.GetMaxHealth() + 5);
             healthIncreased = true;
         }
         if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 10 == 0 && !damageIncreased)
