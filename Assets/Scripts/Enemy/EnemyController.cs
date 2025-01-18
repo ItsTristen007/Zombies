@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             agent.SetDestination(player.transform.position);
+            transform.rotation.SetLookRotation(player.transform.position, Vector3.up);
         }
     }
 

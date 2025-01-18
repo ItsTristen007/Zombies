@@ -1,8 +1,8 @@
-using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Cinemachine;
 
 public class OptionsMenu : MonoBehaviour
 {
