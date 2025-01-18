@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
-    GameObject gameManager;
+    [SerializeField] GameObject newWaveText;
     [SerializeField] float timeBeforeSpawn = 1.5f;
     [SerializeField] float timeBetweenWaves = 8f;
     [SerializeField] int waveSpawnNumber;
@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
 
     void Awake()
     {
-        gameManager = GameObject.Find("GameManager");
+        newWaveText.SetActive(false);
     }
 
     void Update()
@@ -66,6 +66,7 @@ public class Spawner : MonoBehaviour
     IEnumerator TimeUntilNewWave()
     {
         isWaiting = true;
+        newWaveText.SetActive(true);
         yield return new WaitForSeconds(timeBetweenWaves);
         numSpawned = 0;
         if (enemy.name == "CommonEnemy")
@@ -75,5 +76,6 @@ public class Spawner : MonoBehaviour
         isSpawning = true;
         isWaiting = false;
         waveStarting = true;
+        newWaveText.SetActive(false);
     }
 }

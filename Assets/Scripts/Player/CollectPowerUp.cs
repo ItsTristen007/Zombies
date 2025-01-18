@@ -54,6 +54,7 @@ public class CollectPowerUp : MonoBehaviour
     {
         if (instakill)
         {
+            normalDamage = weapon.GetBulletDamage();
             timer = timer - Time.deltaTime;
             powerUpText.text = string.Format("Stapler ({0:#.})", timer);
         }
