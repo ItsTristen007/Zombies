@@ -29,8 +29,12 @@ public class PlayerController : MonoBehaviour
     InputAction sprint;
 
     AudioSource source;
-    public AudioClip shootSound;
-    public AudioClip reloadSound;
+    public AudioClip pistolShootSound;
+    public AudioClip pistolReloadSound;
+    public AudioClip shotgunShootSound;
+    public AudioClip shotgunReloadSound;
+    public AudioClip smgShootSound;
+    public AudioClip smgReloadSound;
 
     private void Awake()
     {
@@ -107,7 +111,18 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(ShotDelay());
 
-            source.PlayOneShot(shootSound);
+            if (weapon.GetUsingPistol())
+            {
+                source.PlayOneShot(pistolShootSound);
+            }
+            else if (weapon.GetUsingShotgun())
+            {
+                source.PlayOneShot(shotgunShootSound);
+            }
+            else
+            {
+                source.PlayOneShot(smgShootSound);
+            }
         }
         else if (weapon.GetCurrentAmmo() == 0 && !isWaiting && !UIManager.gamePaused)
         {
@@ -142,7 +157,18 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator ReloadTime()
     {
-        source.PlayOneShot(reloadSound, 1f);
+        if (weapon.GetUsingPistol())
+        {
+            source.PlayOneShot(pistolReloadSound, 1f);
+        }
+        else if (weapon.GetUsingShotgun())
+        {
+            source.PlayOneShot(shotgunReloadSound, 1f);
+        }
+        else
+        {
+            source.PlayOneShot(smgReloadSound, 1f);
+        }
         isWaiting = true;
         yield return new WaitForSeconds(weapon.GetReloadSpeed());
         ReloadWeapon();

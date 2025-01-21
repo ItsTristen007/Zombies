@@ -4445,7 +4445,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SMG
+  m_text: Pistol
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6691,8 +6691,12 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2863088013637885779, guid: ddf1ab6b5eef8124589315e2cfcb22de,
     type: 3}
   bulletSpawn: {fileID: 2007735593}
-  shootSound: {fileID: 8300000, guid: efe113228b06f0941a7b8037cb001f1c, type: 3}
-  reloadSound: {fileID: 8300000, guid: e9142e88434649049aec4acb5b57d607, type: 3}
+  pistolShootSound: {fileID: 8300000, guid: 5123c604686a9e34da9469acda1c2ec7, type: 3}
+  pistolReloadSound: {fileID: 8300000, guid: 03c7ce0a9de46fd40bdebc0c88aaadb4, type: 3}
+  shotgunShootSound: {fileID: 8300000, guid: c019fbd63dbb91a42a616989b53cc578, type: 3}
+  shotgunReloadSound: {fileID: 8300000, guid: 3dcdfdb06b9b74e4a9c4c194ea8c5d28, type: 3}
+  smgShootSound: {fileID: 8300000, guid: efe113228b06f0941a7b8037cb001f1c, type: 3}
+  smgReloadSound: {fileID: 8300000, guid: e9142e88434649049aec4acb5b57d607, type: 3}
 --- !u!143 &1782543555
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6731,11 +6735,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6378584500286cd409cac8b7530593a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 30
+  maxAmmo: 10
   bulletSpeed: 40
-  bulletDamage: 5
-  fireRate: 0.1
-  reloadSpeed: 1
+  bulletDamage: 10
+  fireRate: 0.8
+  reloadSpeed: 1.5
 --- !u!114 &1782543557
 MonoBehaviour:
   m_ObjectHideFlags: 0
