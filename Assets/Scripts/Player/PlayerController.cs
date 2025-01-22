@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawn;
+
+    [SerializeField] GameObject reloadTimeBar;
+    [SerializeField] Slider reloadSlider;
 
     Inputs playerInputs;
     InputAction move;
@@ -169,9 +173,26 @@ public class PlayerController : MonoBehaviour
         {
             source.PlayOneShot(smgReloadSound, 1f);
         }
+        StartCoroutine(ReloadSliderTimer());
         isWaiting = true;
         yield return new WaitForSeconds(weapon.GetReloadSpeed());
         ReloadWeapon();
         isWaiting = false;
+        reloadTimeBar.SetActive(false);
+    }
+
+    IEnumerator ReloadSliderTimer()
+    {
+        float totalTime = 0f;
+        reloadTimeBar.SetActive(true);
+        reloadSlider.maxValue = weapon.GetReloadSpeed();
+        reloadSlider.value = 0f;
+
+        while (reloadSlider.value < weapon.GetReloadSpeed())
+        {
+            totalTime += Time.deltaTime;
+            reloadSlider.value = totalTime;
+            yield return null;
+        }
     }
 }
