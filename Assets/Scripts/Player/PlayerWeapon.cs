@@ -94,7 +94,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         bulletDamage = 40f;
         maxAmmo = 4f;
-        fireRate = 3f;
+        fireRate = 2f;
         reloadSpeed = 2.5f;
 
         currentAmmo = maxAmmo;
