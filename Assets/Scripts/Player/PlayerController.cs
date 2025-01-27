@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
     CharacterController controller;
     PlayerWeapon weapon;
+    PlayerScore score;
+    GameObject barrier;
     [SerializeField] float moveSpeed = 5f;
     float normalSpeed = 5f;
     float gravityValue = -9.81f;
@@ -18,12 +21,14 @@ public class PlayerController : MonoBehaviour
     Vector3 playerVelocity = Vector3.zero;
     bool isGrounded;
     bool isWaiting;
+    bool nearBarrier;
 
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletSpawn;
 
     [SerializeField] GameObject reloadTimeBar;
     [SerializeField] Slider reloadSlider;
+    [SerializeField] TextMeshProUGUI purchaseText;
 
     Inputs playerInputs;
     InputAction move;
@@ -31,6 +36,7 @@ public class PlayerController : MonoBehaviour
     InputAction shoot;
     InputAction reload;
     InputAction sprint;
+    InputAction interact;
 
     AudioSource source;
     public AudioClip pistolShootSound;
@@ -45,8 +51,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
         weapon = GetComponent<PlayerWeapon>();
+        score = GetComponent<PlayerScore>();
         normalSpeed = moveSpeed;
         cameraTransform = Camera.main.transform;
+        purchaseText.text = "";
         playerInputs = new Inputs();
         Cursor.lockState = CursorLockMode.Locked;
         source = GetComponent<AudioSource>();
@@ -71,6 +79,10 @@ public class PlayerController : MonoBehaviour
         sprint = playerInputs.Player.Sprint;
         sprint.Enable();
         sprint.performed += Sprint;
+
+        interact = playerInputs.Player.Interact;
+        interact.Enable();
+        interact.performed += Interact;
     }
 
     private void OnDisable()
@@ -80,6 +92,7 @@ public class PlayerController : MonoBehaviour
         shoot.Disable();
         reload.Disable();
         sprint.Disable();
+        interact.Disable();
     }
 
     void Update()
@@ -147,9 +160,45 @@ public class PlayerController : MonoBehaviour
         moveSpeed *= 1.5f;
     }
 
+    private void Interact(InputAction.CallbackContext context)
+    {
+        if (nearBarrier && !UIManager.gamePaused)
+        {
+            if (barrier.GetComponent<BuyableBarrier>().GetBarrierCost() <= score.GetScore())
+            {
+                score.ChangeScore(-barrier.GetComponent<BuyableBarrier>().GetBarrierCost());
+                Destroy(barrier);
+                purchaseText.text = "";
+            }
+            else
+            {
+                Debug.Log("Not enough money!");
+            }
+        }
+    }
+
     void ReloadWeapon()
     {
         weapon.SetCurrentAmmo(weapon.GetMaxAmmo());
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Barrier"))
+        {
+            nearBarrier = true;
+            barrier = other.gameObject;
+            purchaseText.text = $"Press 'E' to open barrier ({barrier.GetComponent<BuyableBarrier>().GetBarrierCost()} score)";
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Barrier"))
+        {
+            nearBarrier = false;
+            purchaseText.text = "";
+        }
     }
 
     IEnumerator ShotDelay()

@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     NavMeshAgent agent;
-    [SerializeField] GameObject player;
+    GameObject player;
     [SerializeField] float moveSpeed = 3f;
 
     void Awake()
