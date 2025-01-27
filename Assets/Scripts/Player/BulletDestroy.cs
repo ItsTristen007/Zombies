@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class BulletDestroy : MonoBehaviour
@@ -19,7 +20,7 @@ public class BulletDestroy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Environment"))
+        if (other.gameObject.CompareTag("Environment") || other.gameObject.CompareTag("Barrier"))
         {
             Destroy(gameObject);
         }

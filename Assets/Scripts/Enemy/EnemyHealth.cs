@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    GameObject player;
     [SerializeField] GameObject[] powerUpPrefab;
     [SerializeField] Color[] enemyColors;
     [SerializeField] float maxHealth = 5f;

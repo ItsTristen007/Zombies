@@ -4861,7 +4861,7 @@ Transform:
   m_GameObject: {fileID: 7578093814868514403}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.84, z: 0}
+  m_LocalPosition: {x: 0, y: 1.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4980,7 +4980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562c70f2aa0688f4abb180eaaf262bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   moveSpeed: 3
 --- !u!195 &322651068027043649
 NavMeshAgent:
@@ -5016,7 +5015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6dff012a6c6a7143a4e388f475d59ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   powerUpPrefab:
   - {fileID: 1726695054625644448, guid: 671e856b1e91bc447bb9cc4a4ce898d8, type: 3}
   - {fileID: 7173275291917922800, guid: f15a27c5738f44f448c10064e9406ec3, type: 3}

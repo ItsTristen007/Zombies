@@ -12,6 +12,7 @@ TagManager:
   - DoublePoints
   - Nuke
   - Environment
+  - Barrier
   layers:
   - Default
   - TransparentFX
