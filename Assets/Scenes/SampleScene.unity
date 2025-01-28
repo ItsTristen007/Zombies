@@ -7100,7 +7100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAmmo: 10
   bulletSpeed: 40
-  bulletDamage: 10
+  bulletDamage: 15
   fireRate: 0.8
   reloadSpeed: 1.5
 --- !u!114 &1782543557

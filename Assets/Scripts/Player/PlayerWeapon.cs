@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [SerializeField] float maxAmmo = 30f;
+    [SerializeField] float maxAmmo = 10f;
     float currentAmmo;
     [SerializeField] float bulletSpeed = 40f;
-    [SerializeField] float bulletDamage = 5f;
-    [SerializeField] float fireRate = 0.1f;
-    [SerializeField] float reloadSpeed = 1f;
+    [SerializeField] float bulletDamage = 15f;
+    [SerializeField] float fireRate = 0.8f;
+    [SerializeField] float reloadSpeed = 1.5f;
     bool usingPistol;
     bool usingShotgun;
     bool usingSMG;
@@ -79,7 +79,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public void SwitchToPistol()
     {
-        bulletDamage = 10f;
+        bulletDamage = 15f;
         maxAmmo = 10f;
         fireRate = 0.8f;
         reloadSpeed = 1.5f;
@@ -92,7 +92,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public void SwitchToShotgun()
     {
-        bulletDamage = 40f;
+        bulletDamage = 50f;
         maxAmmo = 4f;
         fireRate = 2f;
         reloadSpeed = 2.5f;
