@@ -26,9 +26,14 @@ public class SpawnManager : MonoBehaviour
             spawner.GetComponent<Spawner>().SetWaveStarting(false);
             healthIncreased = false;
             damageIncreased = false;
-            if (gameManager.GetComponent<GameManager>().GetCurrentWave() == 5)
+            // Brute enemies will only spawn every 5 rounds
+            if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 5 == 0)
             {
                 bruteSpawner.SetActive(true);
+            }
+            else
+            {
+                bruteSpawner.SetActive(false);
             }
         }
 
