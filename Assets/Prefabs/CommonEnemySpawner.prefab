@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5084566786262174771}
   - component: {fileID: 6245848012622590132}
   m_Layer: 0
-  m_Name: CommonZombieSpawner
-  m_TagString: Spawner
+  m_Name: CommonEnemySpawner
+  m_TagString: CommonSpawner
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 7578093814868514403, guid: 0aad1220f89612e4c983956a710fa930, type: 3}
-  newWaveText: {fileID: 0}
-  timeBeforeSpawn: 2.5
-  timeBetweenWaves: 5
-  waveSpawnNumber: 3
