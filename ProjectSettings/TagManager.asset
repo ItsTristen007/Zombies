@@ -6,13 +6,15 @@ TagManager:
   tags:
   - Bullet
   - Enemy
-  - Spawner
   - Instakill
   - InfiniteAmmo
   - DoublePoints
   - Nuke
   - Environment
   - Barrier
+  - CommonSpawner
+  - BruteSpawner
+  - CrawlerSpawner
   layers:
   - Default
   - TransparentFX
