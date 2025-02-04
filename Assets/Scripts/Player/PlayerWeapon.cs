@@ -14,6 +14,9 @@ public class PlayerWeapon : MonoBehaviour
     bool usingShotgun;
     bool usingSMG;
 
+    [SerializeField] GameObject shotgun;
+    [SerializeField] GameObject smg;
+
     public float GetMaxAmmo()
     {
         return maxAmmo;
@@ -75,6 +78,9 @@ public class PlayerWeapon : MonoBehaviour
         usingPistol = true;
         usingShotgun = false;
         usingSMG = false;
+
+        shotgun.SetActive(false);
+        smg.SetActive(false);
     }
 
     public void SwitchToPistol()
@@ -88,6 +94,9 @@ public class PlayerWeapon : MonoBehaviour
         usingPistol = true;
         usingShotgun = false;
         usingSMG = false;
+
+        shotgun.SetActive(false);
+        smg.SetActive(false);
     }
 
     public void SwitchToShotgun()
@@ -101,6 +110,9 @@ public class PlayerWeapon : MonoBehaviour
         usingPistol = false;
         usingShotgun = true;
         usingSMG = false;
+
+        shotgun.SetActive(true);
+        smg.SetActive(false);
     }
 
     public void SwitchToSMG()
@@ -114,5 +126,8 @@ public class PlayerWeapon : MonoBehaviour
         usingPistol = false;
         usingShotgun = false;
         usingSMG = true;
+
+        shotgun.SetActive(false);
+        smg.SetActive(true);
     }
 }
