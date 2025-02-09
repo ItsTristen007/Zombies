@@ -9,7 +9,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject bruteEnemy;
     [SerializeField] GameObject crawlerEnemy;
     [SerializeField] GameObject bruteSpawner;
-    [SerializeField] GameObject crawlerSpawner;
 
     [SerializeField] GameObject newWaveText;
     [SerializeField] float timeBeforeSpawn = 1.5f;
@@ -92,16 +91,11 @@ public class SpawnManager : MonoBehaviour
             // Brute enemies will only spawn every 5 rounds
             if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 5 == 0)
             {
-                bruteSpawner.SetActive(true);
+                //bruteSpawner.SetActive(true);
             }
             else
             {
                 bruteSpawner.SetActive(false);
-            }
-
-            if (gameManager.GetComponent<GameManager>().GetCurrentWave() == 3)
-            {
-                crawlerSpawner.SetActive(true);
             }
         }
 
