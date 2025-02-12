@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject enemy;
     [SerializeField] float maxHealth = 100;
     float currentHealth;
+    float tempHealth;
     [SerializeField] float timeBeforeRegen = 2.5f;
     [SerializeField] float invulnerableTime = 0.5f;
     bool isInvulnerable;
@@ -31,10 +32,38 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = newHealth;
     }
 
+    public float GetInvulnerableTime()
+    {
+        return invulnerableTime;
+    }
+
+    public bool GetIsInvulnerable()
+    {
+        return isInvulnerable;
+    }
+
     void Awake()
     {
         noise = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         currentHealth = maxHealth;
+        tempHealth = currentHealth;
+    }
+
+    void Update()
+    {
+        if (!isInvulnerable)
+        {
+            if (currentHealth < tempHealth)
+            {
+                StartCoroutine(InvulnerableTime());
+                StartCoroutine(CameraShake());
+            }
+            if (currentHealth != tempHealth)
+            {
+                StartCoroutine(HealWaitTime());
+            }
+            tempHealth = currentHealth;
+        }
     }
 
     public void ChangeHealth(float health)
@@ -47,20 +76,6 @@ public class PlayerHealth : MonoBehaviour
         else if (currentHealth < 0)
         {
             currentHealth = 0;
-        }
-    }
-
-    void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            if (!isInvulnerable)
-            {
-                ChangeHealth(-collision.gameObject.GetComponent<EnemyHealth>().GetDamage());
-                StartCoroutine(InvulnerableTime());
-                StartCoroutine(HealWaitTime());
-                StartCoroutine(CameraShake());
-            }
         }
     }
 

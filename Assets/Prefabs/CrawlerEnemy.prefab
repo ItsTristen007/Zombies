@@ -4980,7 +4980,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562c70f2aa0688f4abb180eaaf262bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
   moveSpeed: 4.5
+  damage: 10
+  attackRange: 1
 --- !u!195 &5837445043677049103
 NavMeshAgent:
   m_ObjectHideFlags: 0
