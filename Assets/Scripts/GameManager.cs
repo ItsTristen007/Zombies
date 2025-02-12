@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         currentWave = 1;
 
         enemy.GetComponent<EnemyHealth>().SetMaxHealth(enemyStartHealth);
-        enemy.GetComponent<EnemyHealth>().SetDamage(enemyStartDamage);
+        enemy.GetComponent<EnemyController>().SetDamage(enemyStartDamage);
         enemy.GetComponent<EnemyHealth>().SetPoints(enemyStartPoints);
 
         gameOverScreen.SetActive(false);

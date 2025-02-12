@@ -9,7 +9,6 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Color[] enemyColors;
     [SerializeField] float maxHealth = 5f;
     float currentHealth;
-    [SerializeField] float damage = 25f;
     [SerializeField] float points = 10f;
     bool pointsGiven;
 
@@ -30,16 +29,6 @@ public class EnemyHealth : MonoBehaviour
     public float GetCurrentHealth()
     {
         return currentHealth;
-    }
-
-    public float GetDamage()
-    {
-        return damage;
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
     }
 
     public float GetPoints()
