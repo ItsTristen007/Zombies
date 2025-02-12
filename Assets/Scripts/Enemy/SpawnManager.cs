@@ -23,18 +23,12 @@ public class SpawnManager : MonoBehaviour
     bool isWaiting;
     bool waveStarting;
 
-    EnemyHealth commonEnemyStats;
-    EnemyHealth bruteEnemyStats;
-    EnemyHealth crawlerEnemyStats;
     bool healthIncreased;
     bool damageIncreased;
 
     void Awake()
     {
         gameManager = GameObject.Find("GameManager");
-        commonEnemyStats = commonEnemy.GetComponent<EnemyHealth>();
-        bruteEnemyStats = bruteEnemy.GetComponent<EnemyHealth>();
-        crawlerEnemyStats = crawlerEnemy.GetComponent<EnemyHealth>();
         newWaveText.SetActive(false);
     }
 
@@ -101,12 +95,12 @@ public class SpawnManager : MonoBehaviour
 
         if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 5 == 0 && !healthIncreased)
         {
-            commonEnemyStats.SetMaxHealth(commonEnemyStats.GetMaxHealth() + 10);
+            commonEnemy.GetComponent<EnemyHealth>().SetMaxHealth(commonEnemy.GetComponent<EnemyHealth>().GetMaxHealth() + 10);
             healthIncreased = true;
         }
         if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 10 == 0 && !damageIncreased)
         {
-            commonEnemyStats.SetDamage(commonEnemyStats.GetDamage() * 2);
+            commonEnemy.GetComponent<EnemyController>().SetDamage(commonEnemy.GetComponent<EnemyController>().GetDamage() * 2);
             damageIncreased = true;
         }
     }

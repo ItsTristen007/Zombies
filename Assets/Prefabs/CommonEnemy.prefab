@@ -4980,7 +4980,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562c70f2aa0688f4abb180eaaf262bc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 128
   moveSpeed: 3
+  damage: 25
+  attackRange: 1
 --- !u!195 &322651068027043649
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5024,7 +5029,6 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 0}
   - {r: 1, g: 0.21383637, b: 0.21383637, a: 0}
   maxHealth: 30
-  damage: 25
   points: 10
 --- !u!114 &3098755738655070894
 MonoBehaviour:
