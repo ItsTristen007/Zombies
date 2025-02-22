@@ -54,7 +54,11 @@ public class CollectPowerUp : MonoBehaviour
     {
         if (instakill)
         {
-            normalDamage = weapon.GetBulletDamage();
+            if (normalDamage * 10f != weapon.GetBulletDamage())
+            {
+                normalDamage = weapon.GetBulletDamage();
+                weapon.SetBulletDamage(normalDamage * 10f);
+            }
             timer = timer - Time.deltaTime;
             powerUpText.text = string.Format("Stapler ({0:#.})", timer);
         }
@@ -84,6 +88,7 @@ public class CollectPowerUp : MonoBehaviour
     void Stapler()
     {
         powerUpActive = true;
+        normalDamage = weapon.GetBulletDamage();
         weapon.SetBulletDamage(normalDamage * 10f);
         StartCoroutine(StaplerTime());
     }
