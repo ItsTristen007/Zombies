@@ -12,9 +12,7 @@ TagManager:
   - Nuke
   - Environment
   - Barrier
-  - CommonSpawner
-  - BruteSpawner
-  - CrawlerSpawner
+  - Spawner
   layers:
   - Default
   - TransparentFX

@@ -8,16 +8,13 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject commonEnemy;
     [SerializeField] GameObject bruteEnemy;
     [SerializeField] GameObject crawlerEnemy;
-    [SerializeField] GameObject bruteSpawner;
 
     [SerializeField] GameObject newWaveText;
     [SerializeField] float timeBeforeSpawn = 1.5f;
     [SerializeField] float timeBetweenWaves = 8f;
     [SerializeField] int waveSpawnNumber;
     GameObject[] enemies;
-    GameObject[] commonSpawners;
-    GameObject[] crawlerSpawners;
-    GameObject[] bruteSpawners;
+    GameObject[] spawners;
     int numSpawned;
     bool isSpawning = true;
     bool isWaiting;
@@ -38,26 +35,11 @@ public class SpawnManager : MonoBehaviour
         {
             numSpawned++;
             isSpawning = false;
-            commonSpawners = GameObject.FindGameObjectsWithTag("CommonSpawner");
-            crawlerSpawners = GameObject.FindGameObjectsWithTag("CrawlerSpawner");
-            bruteSpawners = GameObject.FindGameObjectsWithTag("BruteSpawner");
+            spawners = GameObject.FindGameObjectsWithTag("Spawner");
 
-            foreach (GameObject s in commonSpawners)
+            foreach (GameObject s in spawners)
             {
-                s.GetComponent<Spawner>().SpawnEnemy();
-            }
-
-            foreach (GameObject s in crawlerSpawners)
-            {
-                s.GetComponent<Spawner>().SpawnEnemy();
-            }
-
-            if (numSpawned % 5 == 0)
-            {
-                foreach (GameObject s in bruteSpawners)
-                {
-                    s.GetComponent<Spawner>().SpawnEnemy();
-                }
+                s.GetComponent<Spawner>().SpawnEnemy("Common");
             }
         }
         else if (!isSpawning)
@@ -82,15 +64,6 @@ public class SpawnManager : MonoBehaviour
             waveStarting = false;
             healthIncreased = false;
             damageIncreased = false;
-            // Brute enemies will only spawn every 5 rounds
-            if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 5 == 0)
-            {
-                //bruteSpawner.SetActive(true);
-            }
-            else
-            {
-                bruteSpawner.SetActive(false);
-            }
         }
 
         if (gameManager.GetComponent<GameManager>().GetCurrentWave() % 5 == 0 && !healthIncreased)

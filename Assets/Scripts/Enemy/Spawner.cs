@@ -4,10 +4,23 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] GameObject enemy;
+    [SerializeField] GameObject commonEnemy;
+    [SerializeField] GameObject bruteEnemy;
+    [SerializeField] GameObject crawlerEnemy;
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(string enemyType)
     {
-        Instantiate(enemy, transform.position + Vector3.up, Quaternion.identity);
+        if (enemyType == "Common")
+        {
+            Instantiate(commonEnemy, transform.position + Vector3.up, Quaternion.identity);
+        }
+        else if (enemyType == "Brute")
+        {
+            Instantiate(bruteEnemy, transform.position + Vector3.up, Quaternion.identity);
+        }
+        else if (enemyType == "Crawler")
+        {
+            Instantiate(crawlerEnemy, transform.position + Vector3.up, Quaternion.identity);
+        }
     }
 }
