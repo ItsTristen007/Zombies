@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     float enemyStartDamage = 25f;
     float enemyStartPoints = 10f;
 
+    [SerializeField] GameObject crosshair;
+    [SerializeField] GameObject shotgunCrosshair;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject victoryPanel;
     [SerializeField] GameObject deathPanel;
@@ -57,6 +59,8 @@ public class GameManager : MonoBehaviour
         enemy.GetComponent<EnemyController>().SetDamage(enemyStartDamage);
         enemy.GetComponent<EnemyHealth>().SetPoints(enemyStartPoints);
 
+        crosshair.SetActive(true);
+        shotgunCrosshair.SetActive(false);
         gameOverScreen.SetActive(false);
     }
 
@@ -145,6 +149,17 @@ public class GameManager : MonoBehaviour
             victoryPanel.SetActive(true);
             deathPanel.SetActive(false);
             GameOver();
+        }
+
+        if (weaponInfo.GetUsingShotgun())
+        {
+            crosshair.SetActive(false);
+            shotgunCrosshair.SetActive(true);
+        }
+        else
+        {
+            crosshair.SetActive(true);
+            shotgunCrosshair.SetActive(false);
         }
     }
 
