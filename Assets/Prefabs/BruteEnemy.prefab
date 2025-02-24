@@ -4982,7 +4982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   moveSpeed: 2
   damage: 50
   attackRange: 1
@@ -5029,7 +5029,6 @@ MonoBehaviour:
   - {r: 0.74509805, g: 0.5647059, b: 0.2509804, a: 0}
   - {r: 1, g: 0.21568628, b: 0.21568628, a: 0}
   maxHealth: 150
-  damage: 50
   points: 10
 --- !u!114 &4549294181635780896
 MonoBehaviour:
