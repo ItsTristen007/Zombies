@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     GameObject player;
     [SerializeField] GameObject[] powerUpPrefab;
+    [SerializeField] GameObject enemyMat;
     [SerializeField] Color[] enemyColors;
     [SerializeField] float maxHealth = 5f;
     float currentHealth;
@@ -101,8 +102,8 @@ public class EnemyHealth : MonoBehaviour
 
    IEnumerator DamageEffectTime()
     {
-        GetComponent<Renderer>().material.color = enemyColors[1];
+        enemyMat.GetComponent<Renderer>().material.color = enemyColors[1];
         yield return new WaitForSeconds(0.08f);
-        GetComponent<Renderer>().material.color = enemyColors[0];
+        enemyMat.GetComponent<Renderer>().material.color = enemyColors[0];
     }
 }

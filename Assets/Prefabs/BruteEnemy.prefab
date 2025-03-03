@@ -5025,6 +5025,7 @@ MonoBehaviour:
   - {fileID: 7173275291917922800, guid: f15a27c5738f44f448c10064e9406ec3, type: 3}
   - {fileID: 8200569855210346781, guid: 5b9ba75c5fe667345be9802a2dd7e9b2, type: 3}
   - {fileID: 3136387780253450297, guid: fa6134710c369384685397a00f5e3658, type: 3}
+  enemyMat: {fileID: 5665706527469965471}
   enemyColors:
   - {r: 0.74509805, g: 0.5647059, b: 0.2509804, a: 0}
   - {r: 1, g: 0.21568628, b: 0.21568628, a: 0}

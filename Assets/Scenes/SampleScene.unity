@@ -16766,7 +16766,6 @@ MonoBehaviour:
     type: 3}
   crawlerEnemy: {fileID: 6672201848765607967, guid: ed392f24018fc25498bbe6c9635f7caf,
     type: 3}
-  bruteSpawner: {fileID: 0}
   newWaveText: {fileID: 820249032}
   timeBeforeSpawn: 2.5
   timeBetweenWaves: 5
