@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     GameObject gameManager;
+    GameObject player;
     [SerializeField] GameObject commonEnemy;
     [SerializeField] GameObject bruteEnemy;
     [SerializeField] GameObject crawlerEnemy;
@@ -16,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     GameObject[] enemies;
     GameObject[] spawners;
     int numSpawned;
+    int spawnersActive;
     bool isSpawning = true;
     bool isWaiting;
     bool waveStarting;
@@ -26,6 +28,7 @@ public class SpawnManager : MonoBehaviour
     void Awake()
     {
         gameManager = GameObject.Find("GameManager");
+        player = GameObject.FindWithTag("Player");
         newWaveText.SetActive(false);
     }
 
@@ -34,12 +37,42 @@ public class SpawnManager : MonoBehaviour
         if (isSpawning && numSpawned < waveSpawnNumber)
         {
             numSpawned++;
+            spawnersActive = 0;
             isSpawning = false;
             spawners = GameObject.FindGameObjectsWithTag("Spawner");
 
             foreach (GameObject s in spawners)
             {
-                s.GetComponent<Spawner>().SpawnEnemy("Common");
+                if (Vector3.Distance(player.transform.position, s.transform.position) < 15 && spawnersActive < 2)
+                {
+                    if (gameManager.GetComponent<GameManager>().GetCurrentWave() >= 3 && numSpawned % 3 == 0)
+                    {
+                        s.GetComponent<Spawner>().SpawnEnemy("Crawler");
+                        spawnersActive++;
+                    }
+                    else
+                    {
+                        s.GetComponent<Spawner>().SpawnEnemy("Common");
+                        spawnersActive++;
+                    }
+                }
+            }
+
+            foreach (GameObject s in spawners)
+            {
+                if (Vector3.Distance(player.transform.position, s.transform.position) < 30 && spawnersActive < 2)
+                {
+                    if (gameManager.GetComponent<GameManager>().GetCurrentWave() >= 3 && numSpawned % 3 == 0)
+                    {
+                        s.GetComponent<Spawner>().SpawnEnemy("Crawler");
+                        spawnersActive++;
+                    }
+                    else
+                    {
+                        s.GetComponent<Spawner>().SpawnEnemy("Common");
+                        spawnersActive++;
+                    }
+                }
             }
         }
         else if (!isSpawning)
