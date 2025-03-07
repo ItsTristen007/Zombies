@@ -5,22 +5,23 @@ using UnityEngine;
 
 public class BulletDestroy : MonoBehaviour
 {
-    float timer = 3f;
+    PlayerWeapon weapon;
 
     void Awake()
     {
+        weapon = GameObject.FindWithTag("Player").GetComponent<PlayerWeapon>();
         StartCoroutine(SelfDestruct());
     }
 
     IEnumerator SelfDestruct()
     {
-        yield return new WaitForSeconds(timer);
+        yield return new WaitForSeconds(weapon.GetBulletLifetime());
         Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Environment") || other.gameObject.CompareTag("Barrier"))
+        if (other.gameObject.CompareTag("Environment"))
         {
             Destroy(gameObject);
         }
