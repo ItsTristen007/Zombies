@@ -21530,7 +21530,7 @@ MonoBehaviour:
   vCam: {fileID: 305640470}
   enemy: {fileID: 7578093814868514403, guid: 0aad1220f89612e4c983956a710fa930, type: 3}
   maxHealth: 100
-  timeBeforeRegen: 2
+  timeBeforeRegen: 4
   invulnerableTime: 0.75
 --- !u!114 &1782543558
 MonoBehaviour:
