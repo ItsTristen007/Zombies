@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    AudioSource source;
+    public AudioClip pickUpSound;
     float timer = 20f;
 
     void Awake()
     {
+        source = GetComponent<AudioSource>();
         StartCoroutine(Disappear());
     }
 
@@ -15,7 +18,10 @@ public class PowerUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            source.PlayOneShot(pickUpSound);
+            GetComponent<Collider>().enabled = false;
+            GetComponent<Renderer>().enabled = false;
+            Destroy(gameObject, 2f);
         }
     }
 
