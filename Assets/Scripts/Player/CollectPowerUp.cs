@@ -7,6 +7,7 @@ public class CollectPowerUp : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
     [SerializeField] TextMeshProUGUI powerUpText;
+    [SerializeField] TextMeshProUGUI powerUpDescription;
     PlayerWeapon weapon;
     float normalDamage;
     float maxAmmo;
@@ -37,6 +38,7 @@ public class CollectPowerUp : MonoBehaviour
     void Awake()
     {
         powerUpText.text = "";
+        powerUpDescription.text = "";
         weapon = GetComponent<PlayerWeapon>();
         normalDamage = weapon.GetBulletDamage();
         maxAmmo = weapon.GetMaxAmmo();
@@ -88,20 +90,25 @@ public class CollectPowerUp : MonoBehaviour
     void Stapler()
     {
         powerUpActive = true;
+        powerUpDescription.text = "Kill regular enemies in 1 hit";
         normalDamage = weapon.GetBulletDamage();
         weapon.SetBulletDamage(normalDamage * 10f);
         StartCoroutine(StaplerTime());
+        StartCoroutine(DescriptionTimer());
     }
 
     void PaperStack()
     {
         powerUpActive = true;
+        powerUpDescription.text = "Infinite ammo for your current weapon";
         StartCoroutine(PaperStackTime());
+        StartCoroutine(DescriptionTimer());
     }
 
     void Photocopier()
     {
         powerUpActive = true;
+        powerUpDescription.text = "Doubles all score earned";
         copierEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         enemy.GetComponent<EnemyHealth>().SetPoints(normalPoints * 2f);
         foreach (var enemy in copierEnemies)
@@ -109,17 +116,20 @@ public class CollectPowerUp : MonoBehaviour
             enemy.GetComponent<EnemyHealth>().SetPoints(normalPoints * 2f);
         }
         StartCoroutine(PhotocopierTime());
+        StartCoroutine(DescriptionTimer());
     }
 
     void PaperShredder()
     {
         powerUpActive = true;
+        powerUpDescription.text = "Eliminates all enemies on the map";
         shredderEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (var enemy in shredderEnemies)
         {
             Destroy(enemy);
         }
         StartCoroutine(PaperShredderTime());
+        StartCoroutine(DescriptionTimer());
     }
 
     void OnTriggerEnter(Collider other)
@@ -180,5 +190,11 @@ public class CollectPowerUp : MonoBehaviour
         GetComponent<PlayerScore>().ChangeScore(50);
         nuke = false;
         powerUpActive = false;
+    }
+
+    IEnumerator DescriptionTimer()
+    {
+        yield return new WaitForSeconds(3f);
+        powerUpDescription.text = "";
     }
 }
