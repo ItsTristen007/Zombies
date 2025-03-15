@@ -5044,3 +5044,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 8889538561055116928}
+  material: {fileID: 6672201848765607967}

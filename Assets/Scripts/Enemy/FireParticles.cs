@@ -5,6 +5,7 @@ using UnityEngine;
 public class FireParticles : MonoBehaviour
 {
     [SerializeField] ParticleSystem particles;
+    [SerializeField] GameObject material;
     bool startedParticles;
 
     void Awake()
@@ -20,7 +21,7 @@ public class FireParticles : MonoBehaviour
             {
                 particles.Play();
                 startedParticles = true;
-                GetComponent<Renderer>().material.color = Color.gray;
+                material.GetComponent<Renderer>().material.SetColor("_MainColour", Color.gray);
                 Destroy(gameObject, particles.main.duration);
             }
         }
