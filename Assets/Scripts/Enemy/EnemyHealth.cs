@@ -102,8 +102,8 @@ public class EnemyHealth : MonoBehaviour
 
    IEnumerator DamageEffectTime()
     {
-        enemyMat.GetComponent<Renderer>().material.color = enemyColors[1];
+        enemyMat.GetComponent<Renderer>().material.SetColor("_MainColour", enemyColors[1]);
         yield return new WaitForSeconds(0.08f);
-        enemyMat.GetComponent<Renderer>().material.color = enemyColors[0];
+        enemyMat.GetComponent<Renderer>().material.SetColor("_MainColour", enemyColors[0]);
     }
 }
