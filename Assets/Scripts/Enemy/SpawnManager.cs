@@ -21,6 +21,7 @@ public class SpawnManager : MonoBehaviour
     bool isSpawning = true;
     bool isWaiting;
     bool waveStarting;
+    bool bruteSpawned;
 
     bool healthIncreased;
     bool damageIncreased;
@@ -43,12 +44,18 @@ public class SpawnManager : MonoBehaviour
 
             foreach (GameObject s in spawners)
             {
-                if (Vector3.Distance(player.transform.position, s.transform.position) < 15 && spawnersActive < 2)
+                if (Vector3.Distance(player.transform.position, s.transform.position) < 15 && spawnersActive == 0)
                 {
                     if (gameManager.GetComponent<GameManager>().GetCurrentWave() >= 3 && numSpawned % 3 == 0)
                     {
                         s.GetComponent<Spawner>().SpawnEnemy("Crawler");
                         spawnersActive++;
+                    }
+                    else if (!bruteSpawned && gameManager.GetComponent<GameManager>().GetCurrentWave() >= 6 && gameManager.GetComponent<GameManager>().GetCurrentWave() % 2 == 0)
+                    {
+                        s.GetComponent<Spawner>().SpawnEnemy("Brute");
+                        spawnersActive++;
+                        bruteSpawned = true;
                     }
                     else
                     {
@@ -56,16 +63,18 @@ public class SpawnManager : MonoBehaviour
                         spawnersActive++;
                     }
                 }
-            }
-
-            foreach (GameObject s in spawners)
-            {
-                if (Vector3.Distance(player.transform.position, s.transform.position) < 30 && spawnersActive < 2)
+                else if (Vector3.Distance(player.transform.position, s.transform.position) < 30 && spawnersActive < 2)
                 {
                     if (gameManager.GetComponent<GameManager>().GetCurrentWave() >= 3 && numSpawned % 3 == 0)
                     {
                         s.GetComponent<Spawner>().SpawnEnemy("Crawler");
                         spawnersActive++;
+                    }
+                    else if (!bruteSpawned && gameManager.GetComponent<GameManager>().GetCurrentWave() >= 6 && gameManager.GetComponent<GameManager>().GetCurrentWave() % 2 == 0)
+                    {
+                        s.GetComponent<Spawner>().SpawnEnemy("Brute");
+                        spawnersActive++;
+                        bruteSpawned = true;
                     }
                     else
                     {
@@ -95,6 +104,7 @@ public class SpawnManager : MonoBehaviour
         {
             gameManager.GetComponent<GameManager>().UpdateWave();
             waveStarting = false;
+            bruteSpawned = false;
             healthIncreased = false;
             damageIncreased = false;
         }

@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip smgShootSound;
     public AudioClip smgReloadSound;
 
+    public AudioClip doorBuySound;
+    public AudioClip doorFailSound;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -169,10 +172,11 @@ public class PlayerController : MonoBehaviour
                 score.ChangeScore(-barrier.GetComponent<BuyableBarrier>().GetBarrierCost());
                 Destroy(barrier);
                 purchaseText.text = "";
+                source.PlayOneShot(doorBuySound);
             }
             else
             {
-                Debug.Log("Not enough money!");
+                source.PlayOneShot(doorFailSound);
             }
         }
     }

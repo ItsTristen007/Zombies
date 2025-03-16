@@ -15507,7 +15507,7 @@ PrefabInstance:
     - target: {fileID: 5084566786262174771, guid: 0577f636339d787488025f60e5a10315,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -116.56
+      value: -100.71
       objectReference: {fileID: 0}
     - target: {fileID: 5084566786262174771, guid: 0577f636339d787488025f60e5a10315,
         type: 3}
@@ -15517,7 +15517,7 @@ PrefabInstance:
     - target: {fileID: 5084566786262174771, guid: 0577f636339d787488025f60e5a10315,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.72
+      value: 3.62
       objectReference: {fileID: 0}
     - target: {fileID: 5084566786262174771, guid: 0577f636339d787488025f60e5a10315,
         type: 3}
@@ -17618,7 +17618,7 @@ MonoBehaviour:
   crawlerEnemy: {fileID: 6672201848765607967, guid: ed392f24018fc25498bbe6c9635f7caf,
     type: 3}
   newWaveText: {fileID: 820249032}
-  timeBeforeSpawn: 2.5
+  timeBeforeSpawn: 3
   timeBetweenWaves: 5
   waveSpawnNumber: 3
 --- !u!4 &1470050590
@@ -21603,6 +21603,8 @@ MonoBehaviour:
   shotgunReloadSound: {fileID: 8300000, guid: 3dcdfdb06b9b74e4a9c4c194ea8c5d28, type: 3}
   smgShootSound: {fileID: 8300000, guid: efe113228b06f0941a7b8037cb001f1c, type: 3}
   smgReloadSound: {fileID: 8300000, guid: e9142e88434649049aec4acb5b57d607, type: 3}
+  doorBuySound: {fileID: 8300000, guid: 89d9b1af40f443341b7d180b4acad4dd, type: 3}
+  doorFailSound: {fileID: 8300000, guid: 463a52c7bf812564b9f041cc3e8f818c, type: 3}
 --- !u!143 &1782543555
 CharacterController:
   m_ObjectHideFlags: 0
@@ -23458,7 +23460,7 @@ PrefabInstance:
     - target: {fileID: 5084566786262174771, guid: 0577f636339d787488025f60e5a10315,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -129.41623
+      value: -139.99
       objectReference: {fileID: 0}
     - target: {fileID: 5084566786262174771, guid: 0577f636339d787488025f60e5a10315,
         type: 3}
@@ -23468,7 +23470,7 @@ PrefabInstance:
     - target: {fileID: 5084566786262174771, guid: 0577f636339d787488025f60e5a10315,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.141368
+      value: 11.18
       objectReference: {fileID: 0}
     - target: {fileID: 5084566786262174771, guid: 0577f636339d787488025f60e5a10315,
         type: 3}
