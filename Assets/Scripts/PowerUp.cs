@@ -21,7 +21,11 @@ public class PowerUp : MonoBehaviour
             source.PlayOneShot(pickUpSound);
             GetComponent<Collider>().enabled = false;
             GetComponent<Renderer>().enabled = false;
-            Destroy(gameObject, 2f);
+            foreach (Transform child in transform)
+            {
+                child.gameObject.GetComponent<Renderer>().enabled = false;
+            }
+            Destroy(gameObject, 4f);
         }
     }
 

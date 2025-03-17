@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
 {
     NavMeshAgent agent;
     GameObject player;
+    Animator animator;
     [SerializeField] LayerMask playerMask;
     [SerializeField] float moveSpeed = 3f;
     [SerializeField] float damage = 25f;
@@ -30,6 +31,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player");
         agent.speed = moveSpeed;
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -39,6 +41,7 @@ public class EnemyController : MonoBehaviour
         if (GetComponent<Transform>().rotation.z > 0 && GetComponent<EnemyHealth>().GetCurrentHealth() <= 0)
         {
             agent.isStopped = true;
+            animator.SetTrigger("DIE");
             hasAttacked = true;
             agent.SetDestination(transform.position);
         }
@@ -75,7 +78,10 @@ public class EnemyController : MonoBehaviour
     IEnumerator ResetAttackTime()
     {
         yield return new WaitForSeconds(player.GetComponent<PlayerHealth>().GetInvulnerableTime());
-        hasAttacked = false;
+        if (GetComponent<EnemyHealth>().GetCurrentHealth() > 0)
+        {
+            hasAttacked = false;
+        }
     }
 
 }

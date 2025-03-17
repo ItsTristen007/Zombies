@@ -5021,10 +5021,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpPrefab:
-  - {fileID: 1726695054625644448, guid: 671e856b1e91bc447bb9cc4a4ce898d8, type: 3}
+  - {fileID: 1700827622738342101, guid: 671e856b1e91bc447bb9cc4a4ce898d8, type: 3}
   - {fileID: 7173275291917922800, guid: f15a27c5738f44f448c10064e9406ec3, type: 3}
-  - {fileID: 8200569855210346781, guid: 5b9ba75c5fe667345be9802a2dd7e9b2, type: 3}
-  - {fileID: 3136387780253450297, guid: fa6134710c369384685397a00f5e3658, type: 3}
+  - {fileID: 8867655168989869525, guid: 4a66e2055965afd4d8a36b7aa7a1019e, type: 3}
+  - {fileID: 4421037195473641308, guid: fa6134710c369384685397a00f5e3658, type: 3}
   enemyMat: {fileID: 5665706527469965471}
   enemyColors:
   - {r: 0.74509805, g: 0.5647059, b: 0.2509804, a: 0}
