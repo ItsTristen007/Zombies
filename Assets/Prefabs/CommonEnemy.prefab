@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7195971820792772887}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.64}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.723, y: 0, z: -0.136}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8121715208157691044}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!198 &5424895090227452776
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5023,7 +5023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpPrefab:
   - {fileID: 1700827622738342101, guid: 671e856b1e91bc447bb9cc4a4ce898d8, type: 3}
-  - {fileID: 7173275291917922800, guid: f15a27c5738f44f448c10064e9406ec3, type: 3}
+  - {fileID: 4141362756265309626, guid: f15a27c5738f44f448c10064e9406ec3, type: 3}
   - {fileID: 8867655168989869525, guid: 4a66e2055965afd4d8a36b7aa7a1019e, type: 3}
   - {fileID: 4421037195473641308, guid: fa6134710c369384685397a00f5e3658, type: 3}
   enemyMat: {fileID: 5454425423903462374}
