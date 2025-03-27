@@ -54,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            transform.Rotate(-90, 0, 0);
+            transform.Rotate(0, 0, -90);
             transform.position -= new Vector3(0, 0.5f, 0);
 
             GetComponent<Collider>().enabled = false;

@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
     {
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
         
-        if (GetComponent<Transform>().rotation.z > 0 && GetComponent<EnemyHealth>().GetCurrentHealth() <= 0)
+        if (GetComponent<EnemyHealth>().GetCurrentHealth() <= 0)
         {
             agent.isStopped = true;
             animator.SetTrigger("DIE");
@@ -58,6 +58,7 @@ public class EnemyController : MonoBehaviour
     void Chase()
     {
         agent.isStopped = false;
+        animator.SetTrigger("MOVE");
         agent.SetDestination(player.transform.position);
         transform.rotation.SetLookRotation(player.transform.position, Vector3.up);
     }
@@ -69,6 +70,7 @@ public class EnemyController : MonoBehaviour
 
         if (!hasAttacked && !player.GetComponent<PlayerHealth>().GetIsInvulnerable())
         {
+            animator.SetTrigger("ATTACK");
             player.GetComponent<PlayerHealth>().ChangeHealth(-damage);
             hasAttacked = true;
             StartCoroutine(ResetAttackTime());
