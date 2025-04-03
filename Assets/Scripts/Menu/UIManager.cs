@@ -63,11 +63,11 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(mainMenuIndex);
+        SceneManager.LoadSceneAsync(mainMenuIndex);
     }
 }

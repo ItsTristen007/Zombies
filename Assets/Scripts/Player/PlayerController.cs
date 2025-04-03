@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip shotgunReloadSound;
     public AudioClip smgShootSound;
     public AudioClip smgReloadSound;
+    public AudioClip rifleShootSound;
+    public AudioClip rifleReloadSound;
 
     public AudioClip doorBuySound;
     public AudioClip doorFailSound;
@@ -139,9 +141,13 @@ public class PlayerController : MonoBehaviour
             {
                 source.PlayOneShot(shotgunShootSound);
             }
-            else
+            else if (weapon.GetUsingSMG())
             {
                 source.PlayOneShot(smgShootSound);
+            }
+            else
+            {
+                source.PlayOneShot(rifleShootSound);
             }
         }
         else if (weapon.GetCurrentAmmo() == 0 && !isWaiting && !UIManager.gamePaused)
@@ -222,9 +228,13 @@ public class PlayerController : MonoBehaviour
         {
             source.PlayOneShot(shotgunReloadSound, 1f);
         }
-        else
+        else if (weapon.GetUsingSMG())
         {
             source.PlayOneShot(smgReloadSound, 1f);
+        }
+        else
+        {
+            source.PlayOneShot(rifleReloadSound, 1f);
         }
         StartCoroutine(ReloadSliderTimer());
         isWaiting = true;

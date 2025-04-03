@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         ammoText.text = $"{weaponInfo.GetMaxAmmo()}/{weaponInfo.GetMaxAmmo()}";
         lowAmmoText.SetActive(false);
         scoreText.text = "Score: 0";
-        waveCounter.text = "1";
+        waveCounter.text = "Page 1";
         currentWave = 1;
 
         enemy.GetComponent<EnemyHealth>().SetMaxHealth(enemyStartHealth);
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         }
 
         scoreText.text = $"Score: {scoreInfo.GetScore()}";
-        waveCounter.text = $"{currentWave}";
+        waveCounter.text = $"Page {currentWave}";
 
         if (healthInfo.GetCurrentHealth() <= 0)
         {
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
             {
                 // Switch statement that randomly chooses a weapon for the player to use each wave
                 // Also checks if the player gets the same weapon they already have, and will loop until they get a new weapon
-                int randNum = Random.Range(0, 3);
+                int randNum = Random.Range(0, 4);
                 switch (randNum)
                 {
                     case 0:
@@ -135,6 +135,14 @@ public class GameManager : MonoBehaviour
                         {
                             weaponInfo.SwitchToSMG();
                             currentWeaponText.text = "SMG";
+                            newWeapon = true;
+                        }
+                        break;
+                    case 3:
+                        if (currentWeaponText.text != "Rifle")
+                        {
+                            weaponInfo.SwitchToRifle();
+                            currentWeaponText.text = "Rifle";
                             newWeapon = true;
                         }
                         break;

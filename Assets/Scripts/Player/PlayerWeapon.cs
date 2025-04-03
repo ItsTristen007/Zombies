@@ -14,10 +14,12 @@ public class PlayerWeapon : MonoBehaviour
     bool usingPistol;
     bool usingShotgun;
     bool usingSMG;
+    bool usingRifle;
 
     [SerializeField] GameObject pistol;
     [SerializeField] GameObject shotgun;
     [SerializeField] GameObject smg;
+    [SerializeField] GameObject rifle;
 
     public float GetMaxAmmo()
     {
@@ -79,16 +81,23 @@ public class PlayerWeapon : MonoBehaviour
         return usingSMG;
     }
 
+    public bool GetUsingRifle()
+    {
+        return usingRifle;
+    }
+
     void Awake()
     {
         currentAmmo = maxAmmo;
         usingPistol = true;
         usingShotgun = false;
         usingSMG = false;
+        usingRifle = false;
 
         pistol.SetActive(true);
         shotgun.SetActive(false);
         smg.SetActive(false);
+        rifle.SetActive(false);
     }
 
     public void SwitchToPistol()
@@ -97,34 +106,38 @@ public class PlayerWeapon : MonoBehaviour
         bulletLifetime = 3f;
         maxAmmo = 10f;
         fireRate = 0.8f;
-        reloadSpeed = 1.5f;
+        reloadSpeed = 1f;
 
         currentAmmo = maxAmmo;
         usingPistol = true;
         usingShotgun = false;
         usingSMG = false;
+        usingRifle = false;
 
         pistol.SetActive(true);
         shotgun.SetActive(false);
         smg.SetActive(false);
+        rifle.SetActive(false);
     }
 
     public void SwitchToShotgun()
     {
         bulletDamage = 50f;
         bulletLifetime = 0.3f;
-        maxAmmo = 4f;
-        fireRate = 2f;
+        maxAmmo = 5f;
+        fireRate = 1.75f;
         reloadSpeed = 2.5f;
 
         currentAmmo = maxAmmo;
         usingPistol = false;
         usingShotgun = true;
         usingSMG = false;
+        usingRifle = false;
 
         pistol.SetActive(false);
         shotgun.SetActive(true);
         smg.SetActive(false);
+        rifle.SetActive(false);
     }
 
     public void SwitchToSMG()
@@ -139,9 +152,31 @@ public class PlayerWeapon : MonoBehaviour
         usingPistol = false;
         usingShotgun = false;
         usingSMG = true;
+        usingRifle = false;
 
         pistol.SetActive(false);
         shotgun.SetActive(false);
         smg.SetActive(true);
+        rifle.SetActive(false);
+    }
+
+    public void SwitchToRifle()
+    {
+        bulletDamage = 10f;
+        bulletLifetime = 2.5f;
+        maxAmmo = 20f;
+        fireRate = 0.5f;
+        reloadSpeed = 1.75f;
+
+        currentAmmo = maxAmmo;
+        usingPistol = false;
+        usingShotgun = false;
+        usingSMG = false;
+        usingRifle = true;
+
+        pistol.SetActive(false);
+        shotgun.SetActive(false);
+        smg.SetActive(false);
+        rifle.SetActive(true);
     }
 }
