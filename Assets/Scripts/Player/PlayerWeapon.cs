@@ -125,7 +125,7 @@ public class PlayerWeapon : MonoBehaviour
         bulletDamage = 50f;
         bulletLifetime = 0.3f;
         maxAmmo = 5f;
-        fireRate = 1.75f;
+        fireRate = 1.5f;
         reloadSpeed = 2.5f;
 
         currentAmmo = maxAmmo;
@@ -165,7 +165,7 @@ public class PlayerWeapon : MonoBehaviour
         bulletDamage = 10f;
         bulletLifetime = 2.5f;
         maxAmmo = 20f;
-        fireRate = 0.5f;
+        fireRate = 0.4f;
         reloadSpeed = 1.75f;
 
         currentAmmo = maxAmmo;
